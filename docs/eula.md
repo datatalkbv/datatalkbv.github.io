@@ -1,6 +1,6 @@
 # End User License Agreement (EULA) for DataTalk
 
-**Last Updated: October 2, 2024**
+**Last Updated: October 18, 2024**
 
 ## 1. Introduction
 
@@ -13,6 +13,11 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 2.2 "User" means any individual who accesses or uses the Service under your account.
 
 2.3 "Confidential Information" means any non-public information disclosed by one party to the other, either directly or indirectly, in writing, orally or by inspection of tangible objects, which is designated as "Confidential," "Proprietary" or some similar designation.
+
+2.4 "Documentation" means the user manuals, handbooks, and guides relating to the Service provided by DataTalk to the Licensee either electronically or in hard copy form.
+
+2.5 "Intellectual Property Rights" means all patents, rights to inventions, utility models, copyright and related rights, trademarks, service marks, trade, business and domain names, rights in trade dress or get-up, rights in goodwill or to sue for passing off, unfair competition rights, rights in designs, rights in computer software, database rights, topography rights, moral rights, rights in confidential information (including know-how and trade secrets) and any other intellectual property rights, in each case whether registered or unregistered and including all applications for and renewals or extensions of such rights, and all similar or equivalent rights or forms of protection in any part of the world.
+
 
 ## 3. Grant of License
 
@@ -32,6 +37,12 @@ This End User License Agreement ("EULA") is a legally binding contract between y
    c) Remove, alter or obscure any proprietary notice (including any notice of copyright or trademark) of DataTalk or its affiliates, partners, suppliers or the licensors of the Service.
    d) Use the Service in any manner that could damage, disable, overburden, or impair it or interfere with any other party's use of the Service.
    e) Attempt to gain unauthorized access to any portion or feature of the Service, or any other systems or networks connected to the Service or to any DataTalk server.
+
+4.4 Updates and Upgrades: DataTalk may provide updates and upgrades to the Service as described in Section 16 of this EULA.
+
+4.5 Support and Maintenance: DataTalk shall provide support and maintenance services for the Service in accordance with its standard support and maintenance terms.
+
+4.6 Authorized Users: You may permit authorized users to use the Service in accordance with this EULA. You shall ensure that the maximum number of authorized users that you allow to access and use the Service does not exceed the number of user subscriptions you have purchased.
 
 ## 5. Intellectual Property Rights
 
@@ -53,11 +64,19 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 7.2 Data Processing Agreement: If required by applicable law, the parties agree to enter into a separate data processing agreement to govern the processing of personal data through the Service.
 
+7.3 Data Ownership: You shall own all right, title, and interest in and to all of your data and shall have sole responsibility for the legality, reliability, integrity, accuracy, and quality of your data.
+
+7.4 Security Measures: DataTalk shall implement and maintain appropriate technical and organizational measures to protect your data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure or access.
+
+7.5 Data Backup: DataTalk shall perform regular backups of your data and store such backups in a secure off-site location. In the event of any loss or damage to your data, your sole and exclusive remedy shall be for DataTalk to use reasonable commercial endeavors to restore the lost or damaged data from the latest backup.
+
+
 ## 8. Confidentiality
 
 8.1 Confidential Information: Each party agrees that during the term of this EULA and for a period of five (5) years thereafter, it will use the same degree of care it uses to protect its own confidential information of similar nature and importance, but no less than reasonable care, to protect the confidentiality of Confidential Information received from the other party.
 
 8.2 Exclusions: Confidential Information shall not include information that (a) is or becomes publicly known through no act or omission of the receiving party; (b) was in the receiving party's lawful possession prior to the disclosure; (c) is lawfully disclosed to the receiving party by a third party without restriction on disclosure; or (d) is independently developed by the receiving party without use of or reference to the disclosing party's Confidential Information.
+
 
 ## 9. AI Output Disclaimer
 
@@ -71,27 +90,37 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 9.5 No Attorney-Client Relationship: The use of the Service and any AI-Generated Content does not create an attorney-client relationship between you and DataTalk. You acknowledge that DataTalk is not providing legal advice through the Service or AI-Generated Content.
 
-## 10. Disclaimer of Warranties
+## 10.  Fees and Payment
 
-10.1 THE SERVICE IS PROVIDED TO YOU "AS IS" AND "AS AVAILABLE" AND WITH ALL FAULTS AND DEFECTS WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW, DATATALK, ON ITS OWN BEHALF AND ON BEHALF OF ITS AFFILIATES AND ITS AND THEIR RESPECTIVE LICENSORS AND SERVICE PROVIDERS, EXPRESSLY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, WITH RESPECT TO THE SERVICE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT, AND WARRANTIES THAT MAY ARISE OUT OF COURSE OF DEALING, COURSE OF PERFORMANCE, USAGE OR TRADE PRACTICE. WITHOUT LIMITATION TO THE FOREGOING, DATATALK PROVIDES NO WARRANTY OR UNDERTAKING, AND MAKES NO REPRESENTATION OF ANY KIND THAT THE SERVICE WILL MEET YOUR REQUIREMENTS, ACHIEVE ANY INTENDED RESULTS, BE COMPATIBLE OR WORK WITH ANY OTHER SOFTWARE, APPLICATIONS, SYSTEMS OR SERVICES, OPERATE WITHOUT INTERRUPTION, MEET ANY PERFORMANCE OR RELIABILITY STANDARDS OR BE ERROR FREE OR THAT ANY ERRORS OR DEFECTS CAN OR WILL BE CORRECTED.
+10.1 Fees: You agree to pay all fees specified in the order form or other payment agreement between you and DataTalk. Except as otherwise specified herein or in the order form, (i) fees are based on Services purchased and not actual usage, (ii) payment obligations are non-cancelable and fees paid are non-refundable, and (iii) quantities purchased cannot be decreased during the relevant subscription term.
 
-10.2 SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF OR LIMITATIONS ON IMPLIED WARRANTIES OR THE LIMITATIONS ON THE APPLICABLE STATUTORY RIGHTS OF A CONSUMER, SO SOME OR ALL OF THE ABOVE EXCLUSIONS AND LIMITATIONS MAY NOT APPLY TO YOU.
+10.2 Invoicing and Payment: DataTalk will invoice you in accordance with the relevant order form. Unless otherwise stated in the order form, invoiced charges are due 30 days from the invoice date. You are responsible for providing complete and accurate billing and contact information to DataTalk and notifying DataTalk of any changes to such information.
 
-## 11. Limitation of Liability
+10.3 Overdue Charges: If any invoiced amount is not received by DataTalk by the due date, then without limiting DataTalk's rights or remedies, those charges may accrue late interest at the rate of 1.5% of the outstanding balance per month, or the maximum rate permitted by law, whichever is lower.
 
-11.1 TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL DATATALK OR ITS AFFILIATES, OR ANY OF ITS OR THEIR RESPECTIVE LICENSORS OR SERVICE PROVIDERS, HAVE ANY LIABILITY ARISING FROM OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICE OR THE CONTENT AND SERVICES FOR:
+10.4 Taxes: Our fees do not include any taxes, levies, duties or similar governmental assessments of any nature, including, for example, value-added, sales, use or withholding taxes, assessable by any jurisdiction whatsoever (collectively, "Taxes"). You are responsible for paying all Taxes associated with your purchases hereunder.
+
+
+## 11. Disclaimer of Warranties
+
+11.1 THE SERVICE IS PROVIDED TO YOU "AS IS" AND "AS AVAILABLE" AND WITH ALL FAULTS AND DEFECTS WITHOUT WARRANTY OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED UNDER APPLICABLE LAW, DATATALK, ON ITS OWN BEHALF AND ON BEHALF OF ITS AFFILIATES AND ITS AND THEIR RESPECTIVE LICENSORS AND SERVICE PROVIDERS, EXPRESSLY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, WITH RESPECT TO THE SERVICE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT, AND WARRANTIES THAT MAY ARISE OUT OF COURSE OF DEALING, COURSE OF PERFORMANCE, USAGE OR TRADE PRACTICE. WITHOUT LIMITATION TO THE FOREGOING, DATATALK PROVIDES NO WARRANTY OR UNDERTAKING, AND MAKES NO REPRESENTATION OF ANY KIND THAT THE SERVICE WILL MEET YOUR REQUIREMENTS, ACHIEVE ANY INTENDED RESULTS, BE COMPATIBLE OR WORK WITH ANY OTHER SOFTWARE, APPLICATIONS, SYSTEMS OR SERVICES, OPERATE WITHOUT INTERRUPTION, MEET ANY PERFORMANCE OR RELIABILITY STANDARDS OR BE ERROR FREE OR THAT ANY ERRORS OR DEFECTS CAN OR WILL BE CORRECTED.
+
+11.2 SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF OR LIMITATIONS ON IMPLIED WARRANTIES OR THE LIMITATIONS ON THE APPLICABLE STATUTORY RIGHTS OF A CONSUMER, SO SOME OR ALL OF THE ABOVE EXCLUSIONS AND LIMITATIONS MAY NOT APPLY TO YOU.
+
+## 12. Limitation of Liability
+
+12.1 TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL DATATALK OR ITS AFFILIATES, OR ANY OF ITS OR THEIR RESPECTIVE LICENSORS OR SERVICE PROVIDERS, HAVE ANY LIABILITY ARISING FROM OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICE OR THE CONTENT AND SERVICES FOR:
 
    a) PERSONAL INJURY, PROPERTY DAMAGE, LOST PROFITS, COST OF SUBSTITUTE GOODS OR SERVICES, LOSS OF DATA, LOSS OF GOODWILL, BUSINESS INTERRUPTION, COMPUTER FAILURE OR MALFUNCTION OR ANY OTHER CONSEQUENTIAL, INCIDENTAL, INDIRECT, EXEMPLARY, SPECIAL OR PUNITIVE DAMAGES.
 
    b) DIRECT DAMAGES IN AMOUNTS THAT IN THE AGGREGATE EXCEED THE AMOUNT ACTUALLY PAID BY YOU FOR THE SERVICE.
 
-11.2 THE FOREGOING LIMITATIONS WILL APPLY WHETHER SUCH DAMAGES ARISE OUT OF BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE AND REGARDLESS OF WHETHER SUCH DAMAGES WERE FORESEEABLE OR DATATALK WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+12.2 THE FOREGOING LIMITATIONS WILL APPLY WHETHER SUCH DAMAGES ARISE OUT OF BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE AND REGARDLESS OF WHETHER SUCH DAMAGES WERE FORESEEABLE OR DATATALK WAS ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-11.3 SOME JURISDICTIONS DO NOT ALLOW CERTAIN LIMITATIONS OF LIABILITY SO SOME OR ALL OF THE ABOVE LIMITATIONS OF LIABILITY MAY NOT APPLY TO YOU.
+12.3 SOME JURISDICTIONS DO NOT ALLOW CERTAIN LIMITATIONS OF LIABILITY SO SOME OR ALL OF THE ABOVE LIMITATIONS OF LIABILITY MAY NOT APPLY TO YOU.
 
-## 12. Indemnification
 
-You agree to indemnify, defend and hold harmless DataTalk and its officers, directors, employees, agents, affiliates, successors and assigns from and against any and all losses, damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including reasonable attorneys' fees, arising from or relating to your use or misuse of the Service or your breach of this EULA, including but not limited to the content you submit or make available through the Service.
+12.4 You agree to indemnify, defend and hold harmless DataTalk and its officers, directors, employees, agents, affiliates, successors and assigns from and against any and all losses, damages, liabilities, deficiencies, claims, actions, judgments, settlements, interest, awards, penalties, fines, costs, or expenses of whatever kind, including reasonable attorneys' fees, arising from or relating to your use or misuse of the Service or your breach of this EULA, including but not limited to the content you submit or make available through the Service.
 
 ## 13. Term and Termination
 
@@ -153,13 +182,24 @@ Except as provided herein, the failure to exercise a right or to require perform
 
 23.2 By You: You may not assign or transfer your rights or obligations under this EULA without the prior written consent of DataTalk. Any attempted assignment or transfer in violation hereof shall be null and void.
 
-## 24. Notices
+23.3 Subcontracting: DataTalk may subcontract any of its obligations under this EULA, provided that DataTalk remains responsible for compliance of any such subcontractor with the terms of this EULA.
 
-24.1 To You: DataTalk may provide any notice to you under this EULA by: (i) posting a notice on our website; or (ii) sending an email to the email address then associated with your account. Notices we provide by posting on the website will be effective upon posting and notices we provide by email will be effective when we send the email. It is your responsibility to keep your email address current.
+## 24. Case Studies and Testimonials
 
-24.2 To Us: To give us notice under this EULA, you must contact DataTalk by email at mail@datatalk.be. DataTalk may update the email address for notices by posting a notice on our website. Notices to DataTalk will be effective one business day after they are sent.
+24.1 Right to Create Case Studies: You grant DataTalk the right to create and publish case studies, success stories, or testimonials based on your use of the Service.
 
-## 25. Contact Information
+24.2 Use of Name and Logo: You grant DataTalk a limited, revocable license to use your name and logo in marketing materials and on DataTalk's website to identify you as a client.
+
+24.3 Revocation of Consent: You may revoke your consent for the use of any marketing materials upon 30 days' written notice to DataTalk. DataTalk shall promptly cease using your name and logo in any new marketing materials, but is not required to remove your name and logo from existing materials.
+
+## 25. Notices
+
+25.1 To You: DataTalk may provide any notice to you under this EULA by: (i) posting a notice on our website; or (ii) sending an email to the email address then associated with your account. Notices we provide by posting on the website will be effective upon posting and notices we provide by email will be effective when we send the email. It is your responsibility to keep your email address current.
+
+25.2 To Us: To give us notice under this EULA, you must contact DataTalk by email at mail@datatalk.be. DataTalk may update the email address for notices by posting a notice on our website. Notices to DataTalk will be effective one business day after they are sent.
+
+
+## 26. Contact Information
 
 If you have any questions about this EULA, please contact us at:
 
