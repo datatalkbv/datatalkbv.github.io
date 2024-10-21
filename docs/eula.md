@@ -18,6 +18,8 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 2.5 "Intellectual Property Rights" means all patents, rights to inventions, utility models, copyright and related rights, trademarks, service marks, trade, business and domain names, rights in trade dress or get-up, rights in goodwill or to sue for passing off, unfair competition rights, rights in designs, rights in computer software, database rights, topography rights, moral rights, rights in confidential information (including know-how and trade secrets) and any other intellectual property rights, in each case whether registered or unregistered and including all applications for and renewals or extensions of such rights, and all similar or equivalent rights or forms of protection in any part of the world.
 
+2.6 "Paying Users" means users who have purchased a subscription or license to use the Services.
+
 
 ## 3. Grant of License
 
@@ -197,7 +199,41 @@ Except as provided herein, the failure to exercise a right or to require perform
 25.2 To Us: To give us notice under this EULA, you must contact DataTalk by email at mail@datatalk.be. DataTalk may update the email address for notices by posting a notice on our website. Notices to DataTalk will be effective one business day after they are sent.
 
 
-## 26. Contact Information
+## 26. Support Services
+
+### Support Channels
+The DataTalk shall provide the following support channels to Paying Users:
+   a) Email support: support@datatalk.be
+
+### Support Hours
+Standard support hours are Monday to Friday, 9:00 AM to 5:00 PM Central European Time (CET), excluding Belgian public holidays.
+
+### Emergency Support
+Within 48h response for emergency support is available for Severity 1 issues (as defined in Section 4.1).
+
+### Issue Severity Levels and Response Times
+   
+#### Severity Levels
+   Issues shall be categorized into the following severity levels:
+   a) Severity 1 (Critical): The Services are completely unavailable or unusable, causing critical impact to the Paying User's business operations.
+   b) Severity 2 (High): Major functionality of the Services is impaired, causing significant impact to the Paying User's business operations, but a workaround is available.
+   c) Severity 3 (Medium): Minor functionality of the Services is impaired, causing moderate impact to the Paying User's business operations.
+   d) Severity 4 (Low): General questions, feature requests, or minor bugs that do not impact the Paying User's business operations.
+
+#### Response and Resolution Times
+The DataTalk shall use commercially reasonable efforts to respond to and resolve issues according to the timelines specified in Section 2.2 of the Support and Maintenance Terms.
+
+### Maintenance, Updates, and Upgrades
+The DataTalk's maintenance, update, and upgrade procedures shall be as specified in Sections 3 and 4 of the Support and Maintenance Terms.
+
+### Customer Responsibilities
+Paying Users' responsibilities shall be as specified in Section 5 of the Support and Maintenance Terms.
+
+
+### Service Level Agreement (SLA) Credits
+If the DataTalk fails to meet the response and resolution times for Severity 1 and Severity 2 issues, Paying Users shall be entitled to service credits as outlined in Schedule A of the main agreement.
+
+## 27. Contact Us
 
 If you have any questions about this EULA, please contact us at:
 
