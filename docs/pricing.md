@@ -29,11 +29,11 @@ All functionality will be available through Microsoft Word integration.
 
 # References
   
-*I have very much enjoyed the collaboration with Thomas & Koen on multiple levels. They are solution driven, flexible and highly knowledgeable in the domain of automation. I particularly appreciated their ability and ingenuity to circumvent the bottlenecks created by the legacy systems of our client. Thomas & Koen also have excellent communication skills both in a commercial, project and training setting. They both have an outstanding work ethic and all deadlines towards the clients were met.*
+I have very much enjoyed the collaboration with Thomas & Koen on multiple levels. They are solution driven, flexible and highly knowledgeable in the domain of automation. I particularly appreciated their ability and ingenuity to circumvent the bottlenecks created by the legacy systems of our client. Thomas & Koen also have excellent communication skills both in a commercial, project and training setting. They both have an outstanding work ethic and all deadlines towards the clients were met.
 > **Thomas De Ruyck - Partner KPMG Belgium**
 
-*In summary, Koen and Thomas's technical acumen, attention to detail, and professionalism have made substantial and lasting contributions to our company. We highly recommend them, and are confident that their skills will greatly benefit any future endeavour.*
+In summary, Koen and Thomas's technical acumen, attention to detail, and professionalism have made substantial and lasting contributions to our company. We highly recommend them, and are confident that their skills will greatly benefit any future endeavour.
 > **Richard Billington - Chief Technical Officer Netcall**
 
- _De finale keuze was vooral ingegeven door een zeer persoonlijke benadering, dynamische aanpak, menselijke & enthousiaste beleving en snelheid van schakelen. Het eerste resultaat liet dan ook niet lang op zich wachten: binnen een totale doorlooptijd van max 3 maanden hadden we een eerste - relatief complex - project operationeel. Al snel volgden er nog een 5 tal projecten. Dankzij een enorme open mind van Koen en Thomas zijn we vandaag in staat om de bestaande processen zelf te onderhouden._ 
+De finale keuze was vooral ingegeven door een zeer persoonlijke benadering, dynamische aanpak, menselijke & enthousiaste beleving en snelheid van schakelen. Het eerste resultaat liet dan ook niet lang op zich wachten: binnen een totale doorlooptijd van max 3 maanden hadden we een eerste - relatief complex - project operationeel. Al snel volgden er nog een 5 tal projecten. Dankzij een enorme open mind van Koen en Thomas zijn we vandaag in staat om de bestaande processen zelf te onderhouden.
 >**Kris Ranson - Diensthoofd Algemeen Ziekenhuis Maria Middelares**
