@@ -60,15 +60,13 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 ## 7. Privacy and Data Protection
 
-7.1 Privacy Policy: Our collection and use of personal information in connection with the Service is as provided in DataTalk's Privacy Policy, which is available on our website. You agree to our collection, use, and disclosure of information as described in our Privacy Policy.
+7.1 Privacy Policy: Our collection and use of personal information in connection with the Service is as provided in DataTalk's Privacy Policy, which is available on our website. You agree to our collection, use, and disclosure of information as described in our Privacy Policy at https://datatalk.be/privacy.
 
-7.2 Data Processing Agreement: If required by applicable law, the parties agree to enter into a separate data processing agreement to govern the processing of personal data through the Service.
+7.2 Data Ownership: You shall own all right, title, and interest in and to all of your data and shall have sole responsibility for the legality, reliability, integrity, accuracy, and quality of your data.
 
-7.3 Data Ownership: You shall own all right, title, and interest in and to all of your data and shall have sole responsibility for the legality, reliability, integrity, accuracy, and quality of your data.
+7.3 Security Measures: DataTalk shall implement and maintain appropriate technical and organizational measures to protect your data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure or access, for more information, please refer to our Security Policy at https://datatalk.be/security.
 
-7.4 Security Measures: DataTalk shall implement and maintain appropriate technical and organizational measures to protect your data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure or access.
-
-7.5 Data Backup: DataTalk shall perform regular backups of your data and store such backups in a secure off-site location. In the event of any loss or damage to your data, your sole and exclusive remedy shall be for DataTalk to use reasonable commercial endeavors to restore the lost or damaged data from the latest backup.
+7.4 Data Backup: DataTalk shall perform regular backups of your data and store such backups in a secure off-site location. In the event of any loss or damage to your data, your sole and exclusive remedy shall be for DataTalk to use reasonable commercial endeavors to restore the lost or damaged data from the latest backup.
 
 
 ## 8. Confidentiality
