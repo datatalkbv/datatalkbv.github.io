@@ -54,9 +54,9 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 ## 6. User-Generated Content
 
-6.1 Ownership: You retain your rights to any content you submit, post or display on or through the Service ("User Content").
+6.1 Ownership: You retain all rights, title, and interest in and to any content you submit, post or display on or through the Service ("User Content"). DataTalk claims no ownership rights over your User Content and will never use your User Content to train AI models or improve our Services beyond providing them directly to you.
 
-6.2 License Grant: By submitting, posting or displaying User Content on or through the Service, you grant DataTalk a worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute such User Content for the purpose of providing and improving the Service.
+6.2 Limited License Grant: By submitting, posting or displaying User Content on or through the Service, you grant DataTalk a limited, worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute such User Content solely for the purpose of providing the Service to you. This license is strictly limited to operating, maintaining, and improving the Service for your direct benefit.
 
 6.3 Representations and Warranties: You represent and warrant that you have all rights, power, and authority necessary to grant the rights granted herein to any User Content that you submit.
 
@@ -64,7 +64,7 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 7.1 Privacy Policy: Our collection and use of personal information in connection with the Service is as provided in DataTalk's Privacy Policy, which is available on our website. You agree to our collection, use, and disclosure of information as described in our Privacy Policy at https://datatalk.be/privacy.
 
-7.2 Data Ownership: You shall own all right, title, and interest in and to all of your data and shall have sole responsibility for the legality, reliability, integrity, accuracy, and quality of your data.
+7.2 Data Ownership: You shall own all right, title, and interest in and to all of your data and shall have sole responsibility for the legality, reliability, integrity, accuracy, and quality of your data. DataTalk acts solely as a data processor and will never use your data for any purpose other than providing the Services to you. We explicitly commit to never using your data to train AI models, improve our services for other customers, or for any other purpose not directly related to providing you with the contracted Services.
 
 7.3 Security Measures: DataTalk shall implement and maintain appropriate technical and organizational measures to protect your data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure or access, for more information, please refer to our Security Policy at https://datatalk.be/security.
 
@@ -77,8 +77,10 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 8.2 Exclusions: Confidential Information shall not include information that (a) is or becomes publicly known through no act or omission of the receiving party; (b) was in the receiving party's lawful possession prior to the disclosure; (c) is lawfully disclosed to the receiving party by a third party without restriction on disclosure; or (d) is independently developed by the receiving party without use of or reference to the disclosing party's Confidential Information.
 
+8.3 AI Training Exclusion: For the avoidance of doubt, DataTalk shall not use any Confidential Information, including but not limited to User Content and customer data, for training AI models or improving the Service beyond providing it directly to the customer who provided such information.
 
-## 9. AI Output Disclaimer
+
+## 9. AI Output Disclaimer & AI Training and Data Usage
 
 9.1 Nature of AI-Generated Content: You acknowledge and agree that the Service utilizes artificial intelligence technologies to generate content, including but not limited to legal research results, document drafts, and contract reviews ("AI-Generated Content").
 
@@ -89,6 +91,12 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 9.4 User Responsibility: You are solely responsible for any decisions or actions taken based on AI-Generated Content. You agree to use your professional judgment and expertise to evaluate, verify, and appropriately apply any AI-Generated Content in your legal practice or business.
 
 9.5 No Attorney-Client Relationship: The use of the Service and any AI-Generated Content does not create an attorney-client relationship between you and DataTalk. You acknowledge that DataTalk is not providing legal advice through the Service or AI-Generated Content.
+
+9.6 No Training with Customer Data: DataTalk explicitly commits that it does not use any customer-provided data, documents, or content to train its AI models. Your data remains yours and will never be used to improve or train our AI systems.
+
+9.7 Data Segregation: All customer data is strictly segregated and is only used to provide the Service directly to you. Your data will not be shared, analyzed, or processed for any purpose other than providing you with the contracted Services.
+
+9.8 Model Training: DataTalk's AI models are trained exclusively on publicly available data and proprietary datasets that DataTalk has the right to use. Customer data is explicitly excluded from any training processes.
 
 ## 10.  Fees and Payment
 
