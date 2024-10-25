@@ -52,11 +52,32 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 5.2 Feedback: If you provide DataTalk with any feedback or suggestions regarding the Service, you hereby assign to DataTalk all rights in such feedback and agree that DataTalk shall have the right to use and fully exploit such feedback and related information in any manner it deems appropriate.
 
+5.2.3 Permitted Uses: DataTalk may use Feedback to:
+- a) Improve and enhance the Service
+- b) Develop new features and functionality
+- c) Modify existing features and services
+- d) Incorporate into DataTalk's products and services
+- e) Use for any other business purposes
+
+5.2.4 No Compensation: You acknowledge that you are not entitled to any compensation or reimbursement of any kind from DataTalk for the Feedback provided.
+
+5.2.5 No Obligation: DataTalk is under no obligation to:
+- a) Consider or implement any Feedback provided
+- b) Maintain any Feedback as confidential
+- c) Return or acknowledge receipt of any Feedback
+- d) Notify you of any actions taken based on Feedback
+
 ## 6. User-Generated Content
 
-6.1 Ownership: You retain all rights, title, and interest in and to any content you submit, post or display on or through the Service ("User Content"). DataTalk claims no ownership rights over your User Content and will never use your User Content to train AI models or improve our Services beyond providing them directly to you.
+6.1 Ownership: You retain all rights, title, and interest in and to any content you submit, post or display on or through the Service ("User Content"). DataTalk claims no ownership rights over your User Content and will never use your User Content to train AI models.
 
-6.2 Limited License Grant: By submitting, posting or displaying User Content on or through the Service, you grant DataTalk a limited, worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute such User Content solely for the purpose of providing the Service to you. This license is strictly limited to operating, maintaining, and improving the Service for your direct benefit.
+6.2 Limited License Grant: By submitting, posting or displaying User Content on or through the Service, you grant DataTalk a limited, worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute such User Content solely for the purpose of:
+
+- a) Providing the Service to you
+- b) Technical troubleshooting and bug fixes related to your use of the Service
+- c) Collecting anonymous usage analytics as described in Section 10.4
+
+This license is strictly limited to operating, maintaining, and improving the Service for your direct benefit. Under no circumstances will your User Content be used to train AI models or improve the Service for other customers.
 
 6.3 Representations and Warranties: You represent and warrant that you have all rights, power, and authority necessary to grant the rights granted herein to any User Content that you submit.
 
@@ -70,6 +91,14 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 7.4 Data Backup: DataTalk shall perform regular backups of your data and store such backups in a secure off-site location. In the event of any loss or damage to your data, your sole and exclusive remedy shall be for DataTalk to use reasonable commercial endeavors to restore the lost or damaged data from the latest backup.
 
+7.5 Technical Data Collection: In addition to the data processing necessary to provide the Service, DataTalk may collect and process technical data related to your use of the Service, including:
+
+- Error logs and debugging information
+- System performance metrics
+- Anonymous usage statistics
+- Service interaction patterns
+
+Such technical data collection is used solely for the purpose of maintaining and improving the Service's technical operations and your user experience. All such collection and processing will be conducted in accordance with our Privacy Policy and this EULA.
 
 ## 8. Confidentiality
 
@@ -97,6 +126,19 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 9.7 Data Segregation: All customer data is strictly segregated and is only used to provide the Service directly to you. Your data will not be shared, analyzed, or processed for any purpose other than providing you with the contracted Services.
 
 9.8 Model Training: DataTalk's AI models are trained exclusively on publicly available data and proprietary datasets that DataTalk has the right to use. Customer data is explicitly excluded from any training processes.
+
+
+9.9 Technical Operations and Bug Fixes: DataTalk may process error logs and system data related to the processing of your content solely for the purpose of:
+    a) Identifying and resolving technical issues
+    b) Fixing bugs in the Service
+    c) Improving the accuracy and reliability of the Service's processing of your specific data
+    d) Ensuring proper system performance and security
+
+9.10 Usage Analytics: DataTalk may collect and analyze anonymous usage statistics and metadata about how you interact with the Service, including:
+    a) Feature usage patterns
+    b) Performance metrics
+    c) User interface interactions
+    d) Error rates and system health metrics
 
 ## 10.  Fees and Payment
 
