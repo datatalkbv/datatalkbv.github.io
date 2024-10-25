@@ -75,7 +75,7 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 - a) Providing the Service to you
 - b) Technical troubleshooting and bug fixes related to your use of the Service
-- c) Collecting anonymous usage analytics as described in Section 10.4
+- c) Collecting anonymous usage analytics as described in Section 9.4
 
 This license is strictly limited to operating, maintaining, and improving the Service for your direct benefit. Under no circumstances will your User Content be used to train AI models or improve the Service for other customers.
 
