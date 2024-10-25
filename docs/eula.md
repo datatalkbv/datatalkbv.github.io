@@ -127,7 +127,6 @@ Such technical data collection is used solely for the purpose of maintaining and
 
 9.8 Model Training: DataTalk's AI models are trained exclusively on publicly available data and proprietary datasets that DataTalk has the right to use. Customer data is explicitly excluded from any training processes.
 
-
 9.9 Technical Operations and Bug Fixes: DataTalk may process error logs and system data related to the processing of your content solely for the purpose of:
     a) Identifying and resolving technical issues
     b) Fixing bugs in the Service
@@ -140,7 +139,7 @@ Such technical data collection is used solely for the purpose of maintaining and
     c) User interface interactions
     d) Error rates and system health metrics
 
-## 10.  Fees and Payment
+## 10. Fees and Payment
 
 10.1 Fees: You agree to pay all fees specified in the order form or other payment agreement between you and DataTalk. Except as otherwise specified herein or in the order form, (i) fees are based on Services purchased and not actual usage, (ii) payment obligations are non-cancelable and fees paid are non-refundable, and (iii) quantities purchased cannot be decreased during the relevant subscription term.
 
