@@ -1,6 +1,6 @@
 # End User License Agreement (EULA) for DataTalk
 
-**Last Updated: October 18, 2024**
+**Last Updated: October 25, 2024**
 
 ## 1. Introduction
 
