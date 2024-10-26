@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Editor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --word-blue: #2b579a;
+            --toolbar-bg: #f3f2f1;
+            --border-color: #e6e6e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: var(--word-blue);
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 14px;
+            margin: 0;
+            font-weight: normal;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 40px);
+        }
+
+        .content-container {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        .editor-container {
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 21cm;
+            min-height: 29.7cm;
+            padding: 2.54cm;
+            margin: 20px;
+            box-sizing: border-box;
+        }
+
+        #editor {
+            min-height: 100%;
+            outline: none;
+            font-size: 11pt;
+            line-height: 1.15;
+        }
+
+        #editor:focus {
+            outline: none;
+        }
+
+        #editor p {
+            margin: 0;
+            padding: 8px 0;
+            line-height: 1.5;
+        }
+
+        .ribbon {
+            background: var(--toolbar-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2px 0;
+        }
+
+        .ribbon-tabs {
+            display: flex;
+            gap: 2px;
+            padding: 0 8px;
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ribbon-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            font-size: 13px;
+            color: #444;
+        }
+
+        .ribbon-tab.active {
+            background: var(--toolbar-bg);
+            border-bottom: 2px solid var(--word-blue);
+        }
+
+        .ribbon-content {
+            display: flex;
+            padding: 4px;
+            gap: 2px;
+            background: var(--toolbar-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ribbon-group {
+            display: flex;
+            flex-direction: column;
+            padding: 4px 8px;
+            border-right: 1px solid var(--border-color);
+            min-width: 80px;
+        }
+
+        .ribbon-group-title {
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        .ribbon-buttons {
+            display: flex;
+            gap: 2px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ribbon button,
+        .ribbon select {
+            padding: 4px;
+            cursor: pointer;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            min-width: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 11px;
+            color: #444;
+            position: relative;
+        }
+
+        .ribbon button:hover,
+        .ribbon select:hover {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: var(--border-color);
+        }
+
+        .ribbon button.active {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: var(--border-color);
+        }
+
+        .ribbon i.bi {
+            font-size: 24px;
+        }
+
+        .ribbon select {
+            height: 32px;
+            min-width: 120px;
+        }
+
+        .ribbon-group.small button {
+            height: 32px;
+            flex-direction: row;
+            min-width: 32px;
+            font-size: 14px;
+        }
+
+        .ribbon-group.small i.bi {
+            font-size: 16px;
+        }
+
+        .toolbar button:hover,
+        .toolbar select:hover {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: var(--border-color);
+        }
+
+        .toolbar button.active {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: var(--border-color);
+        }
+
+        .toolbar select {
+            min-width: 120px;
+            padding-right: 24px;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 4px center;
+            background-size: 16px;
+        }
+
+        .toolbar .color-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toolbar .color-btn input[type="color"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .toolbar i.bi {
+            font-size: 16px;
+        }
+
+        .status {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
+            display: flex;
+            gap: 20px;
+            padding: 10px;
+            border-top: 1px solid var(--border-color);
+            background: var(--toolbar-bg);
+        }
+
+        .insertion {
+            background-color: #e6ffe6;
+            text-decoration: none;
+        }
+
+        .deletion {
+            background-color: #ffe6e6;
+            text-decoration: line-through;
+        }
+
+        .tracking-on {
+            background-color: #ffeb3b;
+        }
+
+        .current-change {
+            outline: 2px solid #007bff;
+            border-radius: 2px;
+        }
+
+        .change-info {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            max-width: 200px;
+        }
+
+        .insertion:hover .change-info,
+        .deletion:hover .change-info {
+            display: block;
+        }
+
+        .insertion {
+            background-color: #e6ffe6;
+            text-decoration: none;
+            position: relative;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .deletion {
+            background-color: #ffe6e6;
+            text-decoration: line-through;
+            position: relative;
+            border-bottom: 2px solid #f44336;
+        }
+
+        .change-summary {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+            width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .change-summary.visible {
+            display: block;
+        }
+
+        .styles-panel {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            z-index: 1000;
+            width: 250px;
+        }
+
+        .styles-panel.visible {
+            display: block;
+        }
+
+        .styles-section {
+            margin: 12px 0;
+        }
+
+        .styles-section h4 {
+            margin: 8px 0;
+            color: var(--word-blue);
+        }
+
+        .style-btn {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .style-btn:hover {
+            background: var(--toolbar-bg);
+        }
+
+        /* Predefined styles */
+        .heading1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--word-blue);
+            margin: 16px 0;
+        }
+
+        .heading2 {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--word-blue);
+            margin: 14px 0;
+        }
+
+        .heading3 {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--word-blue);
+            margin: 12px 0;
+        }
+
+        .quote {
+            border-left: 3px solid var(--word-blue);
+            padding-left: 12px;
+            margin: 12px 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        .code {
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 12px;
+            border-radius: 4px;
+            margin: 12px 0;
+        }
+
+        .emphasis {
+            font-style: italic;
+            color: #666;
+        }
+
+        .strong {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .code-inline {
+            font-family: monospace;
+            background: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+        }
+
+        .small-caps {
+            font-variant: small-caps;
+            letter-spacing: 0.5px;
+        }
+
+        .change-entry {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+        .change-entry:last-child {
+            border-bottom: none;
+        }
+
+        .find-replace-dialog {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: white;
+            padding: 16px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            display: none;
+            z-index: 1000;
+            width: 300px;
+        }
+
+        .find-replace-dialog.visible {
+            display: block;
+        }
+
+        .find-replace-dialog input[type="text"] {
+            width: 100%;
+            padding: 6px;
+            margin: 4px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+        }
+
+        .find-replace-dialog .options {
+            margin: 8px 0;
+        }
+
+        .find-replace-dialog .buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .find-replace-dialog button {
+            padding: 6px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            background: var(--toolbar-bg);
+            cursor: pointer;
+        }
+
+        .find-replace-dialog button:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .find-match {
+            background-color: #ffeb3b;
+        }
+
+        .find-match.current {
+            background-color: #ffc107;
+            outline: 2px solid #ff9800;
+        }
+
+        /* Table styles */
+        #editor table {
+            border-collapse: collapse;
+            margin: 1em 0;
+            min-width: 50%;
+        }
+
+        #editor td,
+        #editor th {
+            border: 1px solid #ccc;
+            padding: 8px;
+            min-width: 50px;
+            position: relative;
+        }
+
+        #editor th {
+            background-color: #f3f2f1;
+            font-weight: bold;
+        }
+
+        #editor td:hover,
+        #editor th:hover {
+            outline: 2px solid var(--word-blue);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1>Document Editor</h1>
+        </div>
+
+        <div class="ribbon">
+            <div class="ribbon-tabs">
+                <button class="ribbon-tab active" data-tab="home">Home</button>
+                <button class="ribbon-tab" data-tab="insert">Insert</button>
+                <button class="ribbon-tab" data-tab="review">Review</button>
+            </div>
+            <div class="ribbon-content" id="homeTab">
+                <!-- Clipboard -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <button onclick="editor.paste()" title="Paste">
+                            <i class="bi bi-clipboard"></i>
+                            <span>Paste</span>
+                        </button>
+                        <button onclick="editor.cut()" title="Cut">
+                            <i class="bi bi-scissors"></i>
+                            <span>Cut</span>
+                        </button>
+                        <button onclick="editor.copy()" title="Copy">
+                            <i class="bi bi-files"></i>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Clipboard</div>
+                </div>
+
+                <!-- Font -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <select onchange="formatDoc('fontName', this.value)">
+                            <option value="">Calibri</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Calibri">Calibri</option>
+                            <option value="Cambria">Cambria</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Segoe UI">Segoe UI</option>
+                        </select>
+                        <select id="fontSizeSelect" onchange="formatDoc('fontSize', this.value)">
+                            <option value="3">11</option>
+                            <option value="1">8</option>
+                            <option value="2">10</option>
+                            <option value="4">12</option>
+                            <option value="5">14</option>
+                            <option value="6">16</option>
+                            <option value="7">18</option>
+                        </select>
+                        <div class="ribbon-buttons small">
+                            <button onclick="editor.increaseFontSize()" title="Increase Font Size">
+                                <i class="bi bi-plus"></i>A
+                            </button>
+                            <button onclick="editor.decreaseFontSize()" title="Decrease Font Size">
+                                <i class="bi bi-dash"></i>A
+                            </button>
+                        </div>
+                    </div>
+                    <div class="ribbon-group-title">Font</div>
+                </div>
+
+                <!-- Text Formatting -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons small">
+                        <button onclick="formatDoc('bold')" title="Bold">
+                            <i class="bi bi-type-bold"></i>
+                        </button>
+                        <button onclick="formatDoc('italic')" title="Italic">
+                            <i class="bi bi-type-italic"></i>
+                        </button>
+                        <button onclick="formatDoc('underline')" title="Underline">
+                            <i class="bi bi-type-underline"></i>
+                        </button>
+                        <button onclick="formatDoc('strikeThrough')" title="Strikethrough">
+                            <i class="bi bi-type-strikethrough"></i>
+                        </button>
+                        <button onclick="editor.clearFormatting()" title="Clear Formatting">
+                            <i class="bi bi-eraser"></i>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Formatting</div>
+                </div>
+
+                <!-- Paragraph -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons small">
+                        <button onclick="formatDoc('justifyLeft')" title="Align Left">
+                            <i class="bi bi-text-left"></i>
+                        </button>
+                        <button onclick="formatDoc('justifyCenter')" title="Center">
+                            <i class="bi bi-text-center"></i>
+                        </button>
+                        <button onclick="formatDoc('justifyRight')" title="Align Right">
+                            <i class="bi bi-text-right"></i>
+                        </button>
+                        <button onclick="formatDoc('justifyFull')" title="Justify">
+                            <i class="bi bi-justify"></i>
+                        </button>
+                    </div>
+                    <div class="ribbon-buttons small">
+                        <button onclick="formatDoc('insertUnorderedList')" title="Bullet List">
+                            <i class="bi bi-list-ul"></i>
+                        </button>
+                        <button onclick="formatDoc('insertOrderedList')" title="Numbered List">
+                            <i class="bi bi-list-ol"></i>
+                        </button>
+                        <button onclick="formatDoc('outdent')" title="Decrease Indent">
+                            <i class="bi bi-text-indent-left"></i>
+                        </button>
+                        <button onclick="formatDoc('indent')" title="Increase Indent">
+                            <i class="bi bi-text-indent-right"></i>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Paragraph</div>
+                </div>
+
+                <!-- Tables -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <button onclick="editor.insertTable()" title="Insert Table">
+                            <i class="bi bi-table"></i>
+                            <span>Table</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-buttons small">
+                        <button onclick="editor.addRow()" title="Add Row">
+                            <i class="bi bi-plus"></i>Row
+                        </button>
+                        <button onclick="editor.addColumn()" title="Add Column">
+                            <i class="bi bi-plus"></i>Col
+                        </button>
+                        <button onclick="editor.deleteRow()" title="Delete Row">
+                            <i class="bi bi-dash"></i>Row
+                        </button>
+                        <button onclick="editor.deleteColumn()" title="Delete Column">
+                            <i class="bi bi-dash"></i>Col
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Table</div>
+                </div>
+
+                <!-- Review -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <button id="trackChanges" onclick="editor.toggleTrackChanges()" title="Track Changes">
+                            <i class="bi bi-pencil-square"></i>
+                            <span>Track Changes</span>
+                        </button>
+                        <button onclick="editor.toggleChangeSummary()" title="Show Changes">
+                            <i class="bi bi-list-check"></i>
+                            <span>Show Changes</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-buttons small">
+                        <button onclick="editor.previousChange()" title="Previous">
+                            <i class="bi bi-arrow-left-circle"></i>
+                        </button>
+                        <button onclick="editor.nextChange()" title="Next">
+                            <i class="bi bi-arrow-right-circle"></i>
+                        </button>
+                        <button onclick="editor.acceptCurrentChange()" title="Accept">
+                            <i class="bi bi-check-circle"></i>
+                        </button>
+                        <button onclick="editor.rejectCurrentChange()" title="Reject">
+                            <i class="bi bi-x-circle"></i>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Review</div>
+                </div>
+            </div>
+
+            <div class="ribbon-content" id="insertTab" style="display: none;">
+                <!-- Insert tab content -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <button onclick="editor.insertTable()" title="Insert Table">
+                            <i class="bi bi-table"></i>
+                            <span>Table</span>
+                        </button>
+                        <button onclick="document.getElementById('imageInput').click()" title="Insert Image">
+                            <i class="bi bi-image"></i>
+                            <span>Image</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Insert</div>
+                </div>
+            </div>
+
+            <div class="ribbon-content" id="reviewTab" style="display: none;">
+                <!-- Review tab content -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <button id="trackChanges" onclick="editor.toggleTrackChanges()" title="Track Changes">
+                            <i class="bi bi-pencil-square"></i>
+                            <span>Track Changes</span>
+                        </button>
+                        <button onclick="editor.toggleChangeSummary()" title="Show Changes">
+                            <i class="bi bi-list-check"></i>
+                            <span>Show Changes</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-buttons small">
+                        <button onclick="editor.previousChange()" title="Previous">
+                            <i class="bi bi-arrow-left-circle"></i>
+                        </button>
+                        <button onclick="editor.nextChange()" title="Next">
+                            <i class="bi bi-arrow-right-circle"></i>
+                        </button>
+                        <button onclick="editor.acceptCurrentChange()" title="Accept">
+                            <i class="bi bi-check-circle"></i>
+                        </button>
+                        <button onclick="editor.rejectCurrentChange()" title="Reject">
+                            <i class="bi bi-x-circle"></i>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Review</div>
+                </div>
+            </div>
+
+            <input type="file" id="importFile" style="display: none" onchange="editor.importDocument(event)">
+            <input type="file" id="imageInput" accept="image/*" style="display: none"
+                onchange="editor.insertImageFromFile(this.files[0])">
+        </div>
+
+        <div class="content-container">
+            <div class="editor-container">
+                <div id="editor" contenteditable="true">
+                    <p>Start typing here. This is a simple HTML editor that works directly with the DOM.</p>
+                    <p>Try using the formatting buttons above or just type normally.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="status">
+            <div>Words: <span id="wordCount">0</span></div>
+            <div>Characters: <span id="charCount">0</span></div>
+            <div>Characters (no spaces): <span id="charNoSpacesCount">0</span></div>
+            <div>Paragraphs: <span id="paragraphCount">0</span></div>
+            <div>Sentences: <span id="sentenceCount">0</span></div>
+        </div>
+
+        <div class="find-replace-dialog" id="findReplaceDialog">
+            <div>
+                <input type="text" id="findInput" placeholder="Find">
+                <input type="text" id="replaceInput" placeholder="Replace with">
+            </div>
+            <div class="options">
+                <label>
+                    <input type="checkbox" id="matchCase"> Match case
+                </label>
+                <label>
+                    <input type="checkbox" id="wholeWord"> Whole words
+                </label>
+            </div>
+            <div class="buttons">
+                <button onclick="editor.findNext()">Find Next</button>
+                <button onclick="editor.replace()">Replace</button>
+                <button onclick="editor.replaceAll()">Replace All</button>
+                <button onclick="editor.toggleFindReplace()">Close</button>
+            </div>
+        </div>
+
+        <div id="changeSummary" class="change-summary">
+            <h3>Changes Summary</h3>
+            <div id="changesList"></div>
+        </div>
+
+        <div id="stylesPanel" class="styles-panel">
+            <h3>Styles</h3>
+            <div class="styles-section">
+                <h4>Paragraph Styles</h4>
+                <button onclick="editor.applyStyle('normal')" class="style-btn">Normal</button>
+                <button onclick="editor.applyStyle('heading1')" class="style-btn">Heading 1</button>
+                <button onclick="editor.applyStyle('heading2')" class="style-btn">Heading 2</button>
+                <button onclick="editor.applyStyle('heading3')" class="style-btn">Heading 3</button>
+                <button onclick="editor.applyStyle('quote')" class="style-btn">Quote</button>
+                <button onclick="editor.applyStyle('code')" class="style-btn">Code</button>
+            </div>
+            <div class="styles-section">
+                <h4>Character Styles</h4>
+                <button onclick="editor.applyCharacterStyle('emphasis')" class="style-btn">Emphasis</button>
+                <button onclick="editor.applyCharacterStyle('strong')" class="style-btn">Strong</button>
+                <button onclick="editor.applyCharacterStyle('code-inline')" class="style-btn">Inline Code</button>
+                <button onclick="editor.applyCharacterStyle('highlight')" class="style-btn">Highlight</button>
+                <button onclick="editor.applyCharacterStyle('small-caps')" class="style-btn">Small Caps</button>
+            </div>
+        </div>
+
+        <script>
+            class SimpleEditor {
+                constructor(elementId) {
+                    this.editor = document.getElementById(elementId);
+                    this.charCount = document.getElementById('charCount');
+                    this.trackChangesEnabled = false;
+                    this.trackChangesBtn = document.getElementById('trackChanges');
+                    this.currentChangeIndex = -1;
+                    this.findReplaceDialog = document.getElementById('findReplaceDialog');
+                    this.currentFindIndex = -1;
+                    this.findMatches = [];
+                    this.setupEventListeners();
+                    this.updateCharCount();
+                    this.setupAutoSave();
+                }
+
+                setupAutoSave() {
+                    // Auto-save every 5 seconds
+                    setInterval(() => this.autoSave(), 5000);
+
+                    // Load content on startup
+                    this.autoLoad();
+
+                    // Save on any input
+                    this.editor.addEventListener('input', () => {
+                        clearTimeout(this.saveTimeout);
+                        this.saveTimeout = setTimeout(() => this.autoSave(), 1000);
+                    });
+                }
+
+                autoSave() {
+                    const content = this.editor.innerHTML;
+                    const timestamp = new Date().toISOString();
+                    localStorage.setItem('documentContent', content);
+                    localStorage.setItem('lastSaved', timestamp);
+                }
+
+                autoLoad() {
+                    const content = localStorage.getItem('documentContent');
+                    if (content) {
+                        this.editor.innerHTML = content;
+                        this.updateCharCount();
+                    }
+                }
+
+                exportDocument() {
+                    const content = this.editor.innerHTML;
+                    const blob = new Blob([content], { type: 'text/html' });
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'document.html';
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                }
+
+                importDocument(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    if (confirm('Import this document? Current content will be replaced.')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            this.editor.innerHTML = e.target.result;
+                            this.updateCharCount();
+                            event.target.value = ''; // Reset file input
+                        };
+                        reader.readAsText(file);
+                    }
+                }
+
+
+                toggleTrackChanges() {
+                    this.trackChangesEnabled = !this.trackChangesEnabled;
+                    this.trackChangesBtn.classList.toggle('tracking-on');
+                }
+
+                markChange(isInsertion, text) {
+                    if (!this.trackChangesEnabled) return text;
+
+                    const span = document.createElement('span');
+                    span.className = isInsertion ? 'insertion' : 'deletion';
+                    span.dataset.author = 'Current User';
+                    span.dataset.timestamp = new Date().toISOString();
+                    span.textContent = text;
+
+                    const info = document.createElement('div');
+                    info.className = 'change-info';
+                    info.textContent = `${isInsertion ? 'Added' : 'Removed'} by ${span.dataset.author} on ${new Date(span.dataset.timestamp).toLocaleString()}`;
+                    span.appendChild(info);
+
+                    this.updateChangeSummary();
+                    return span.outerHTML;
+                }
+
+                previousChange() {
+                    const currentHighlight = this.editor.querySelector('.current-change');
+                    if (currentHighlight) {
+                        currentHighlight.classList.remove('current-change');
+                    }
+
+                    const changes = [...this.editor.querySelectorAll('.insertion, .deletion')];
+
+                    if (changes.length === 0) {
+                        this.currentChangeIndex = -1;
+                        return;
+                    }
+
+                    this.currentChangeIndex = this.currentChangeIndex <= 0 ?
+                        changes.length - 1 : this.currentChangeIndex - 1;
+
+                    const currentChange = changes[this.currentChangeIndex];
+                    currentChange.classList.add('current-change');
+                    currentChange.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                rejectCurrentChange() {
+                    const currentChange = this.editor.querySelector('.current-change');
+                    if (!currentChange) return;
+
+                    if (currentChange.classList.contains('insertion')) {
+                        currentChange.remove();
+                    } else if (currentChange.classList.contains('deletion')) {
+                        const textNode = document.createTextNode(currentChange.textContent);
+                        currentChange.parentNode.replaceChild(textNode, currentChange);
+                    }
+
+                    this.currentChangeIndex--;
+                    this.nextChange();
+                    this.updateChangeSummary();
+                }
+
+                toggleChangeSummary() {
+                    const summary = document.getElementById('changeSummary');
+                    summary.classList.toggle('visible');
+                    this.updateChangeSummary();
+                }
+
+                updateChangeSummary() {
+                    const changesList = document.getElementById('changesList');
+                    const changes = [...this.editor.querySelectorAll('.insertion, .deletion')];
+
+                    changesList.innerHTML = '';
+
+                    changes.forEach((change, index) => {
+                        const entry = document.createElement('div');
+                        entry.className = 'change-entry';
+                        const type = change.classList.contains('insertion') ? 'Added' : 'Removed';
+                        const author = change.dataset.author || 'Unknown';
+                        const time = new Date(change.dataset.timestamp).toLocaleString();
+
+                        entry.innerHTML = `
+                        <div><strong>${type}:</strong> "${change.textContent}"</div>
+                        <div><small>By ${author} on ${time}</small></div>
+                    `;
+
+                        changesList.appendChild(entry);
+                    });
+                }
+
+                setupEventListeners() {
+                    this.editor.addEventListener('keydown', this.handleKeyDown.bind(this));
+                    this.editor.addEventListener('input', this.handleInput.bind(this));
+                    this.editor.addEventListener('paste', this.handlePaste.bind(this));
+
+                    // Add tab switching functionality
+                    document.querySelectorAll('.ribbon-tab').forEach(tab => {
+                        tab.addEventListener('click', () => {
+                            // Remove active class from all tabs
+                            document.querySelectorAll('.ribbon-tab').forEach(t => t.classList.remove('active'));
+                            // Add active class to clicked tab
+                            tab.classList.add('active');
+
+                            // Hide all tab contents
+                            document.querySelectorAll('.ribbon-content').forEach(content => {
+                                content.style.display = 'none';
+                            });
+
+                            // Show selected tab content
+                            const tabId = tab.getAttribute('data-tab') + 'Tab';
+                            document.getElementById(tabId).style.display = 'flex';
+                        });
+                    });
+                }
+
+                handleKeyDown(e) {
+                    // Handle Enter key
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.createNewParagraph();
+                    }
+
+                    // Handle Backspace key
+                    if (e.key === 'Backspace') {
+                        const selection = window.getSelection();
+                        const range = selection.getRangeAt(0);
+
+                        // Track deletions before they happen
+                        if (this.trackChangesEnabled) {
+                            if (!range.collapsed) {
+                                // Text selection deletion
+                                e.preventDefault();
+                                const deletedContent = range.toString();
+                                const span = document.createElement('span');
+                                span.className = 'deletion';
+                                span.textContent = deletedContent;
+                                range.deleteContents();
+                                range.insertNode(span);
+                                range.setStartAfter(span);
+                                range.setEndAfter(span);
+                                selection.removeAllRanges();
+                                selection.addRange(range);
+                            } else if (range.startOffset > 0) {
+                                // Single character deletion
+                                e.preventDefault();
+                                const container = range.startContainer;
+                                const offset = range.startOffset;
+                                const deletedChar = container.textContent.charAt(offset - 1);
+
+                                container.textContent = container.textContent.slice(0, offset - 1) +
+                                    container.textContent.slice(offset);
+
+                                const span = document.createElement('span');
+                                span.className = 'deletion';
+                                span.textContent = deletedChar;
+
+                                range.setStart(container, offset - 1);
+                                range.setEnd(container, offset - 1);
+                                range.insertNode(span);
+
+                                // Move cursor one position to the left of the deletion mark
+                                range.setStart(container, Math.max(0, offset - 1));
+                                range.setEnd(container, Math.max(0, offset - 1));
+                                selection.removeAllRanges();
+                                selection.addRange(range);
+                            }
+                        }
+
+                        // Handle paragraph merging
+                        if (range.startOffset === 0) {
+                            const currentParagraph = this.getClosestParagraph(range.startContainer);
+                            if (currentParagraph && currentParagraph.previousElementSibling) {
+                                e.preventDefault();
+                                this.mergeParagraphs(currentParagraph.previousElementSibling, currentParagraph);
+                            }
+                        }
+                    }
+                }
+
+                handleInput(e) {
+                    if (this.trackChangesEnabled && e.inputType === 'insertText' && e.data) {
+                        // Remove the character that was just inserted
+                        document.execCommand('undo');
+
+                        const selection = window.getSelection();
+                        const range = selection.getRangeAt(0);
+
+                        // Create and insert the marked span
+                        const span = document.createElement('span');
+                        span.className = 'insertion';
+                        span.textContent = e.data;
+
+                        range.deleteContents();
+                        range.insertNode(span);
+
+                        // Position cursor after insertion
+                        range.setStartAfter(span);
+                        range.setEndAfter(span);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    }
+
+                    // Ensure content is always wrapped in paragraphs
+                    if (!this.editor.querySelector('p')) {
+                        this.wrapTextInParagraph();
+                    }
+                    this.updateCharCount();
+                }
+
+                handlePaste(e) {
+                    e.preventDefault();
+                    const text = e.clipboardData.getData('text/plain');
+                    document.execCommand('insertText', false, text);
+                }
+
+                createNewParagraph() {
+                    document.execCommand('insertParagraph', false);
+                }
+
+                wrapTextInParagraph() {
+                    const content = this.editor.innerHTML;
+                    this.editor.innerHTML = `<p>${content}</p>`;
+                    this.moveCursorToEnd();
+                }
+
+                mergeParagraphs(p1, p2) {
+                    if (p1 && p2) {
+                        const pos = p1.textContent.length;
+                        p1.textContent += p2.textContent;
+                        p2.remove();
+
+                        const range = document.createRange();
+                        const sel = window.getSelection();
+                        range.setStart(p1.firstChild, pos);
+                        range.collapse(true);
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+                }
+
+                getClosestParagraph(node) {
+                    while (node && node.nodeName !== 'P') {
+                        node = node.parentNode;
+                    }
+                    return node;
+                }
+
+                moveCursorToEnd() {
+                    const range = document.createRange();
+                    const sel = window.getSelection();
+                    const lastParagraph = this.editor.lastChild;
+                    if (lastParagraph) {
+                        range.setStartAfter(lastParagraph.lastChild || lastParagraph);
+                        range.collapse(true);
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                    }
+                }
+
+                setLineHeight(value) {
+                    const selection = window.getSelection();
+                    const range = selection.getRangeAt(0);
+                    const paragraph = this.getClosestParagraph(range.commonAncestorContainer);
+
+                    if (paragraph) {
+                        paragraph.style.lineHeight = value;
+                    }
+                }
+
+                updateCharCount() {
+                    const text = this.editor.textContent;
+                    const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+                    const chars = text.length;
+                    const charsNoSpaces = text.replace(/\s/g, '').length;
+                    const paragraphs = this.editor.getElementsByTagName('p').length;
+                    const sentences = text.split(/[.!?]+\s/).filter(sentence => sentence.length > 0);
+
+                    document.getElementById('wordCount').textContent = words.length;
+                    document.getElementById('charCount').textContent = chars;
+                    document.getElementById('charNoSpacesCount').textContent = charsNoSpaces;
+                    document.getElementById('paragraphCount').textContent = paragraphs;
+                    document.getElementById('sentenceCount').textContent = sentences.length;
+                }
+
+                acceptAllChanges() {
+                    // Handle insertions
+                    const insertions = this.editor.querySelectorAll('.insertion');
+                    insertions.forEach(insertion => {
+                        const textNode = document.createTextNode(insertion.textContent);
+                        insertion.parentNode.replaceChild(textNode, insertion);
+                    });
+
+                    // Handle deletions
+                    const deletions = this.editor.querySelectorAll('.deletion');
+                    deletions.forEach(deletion => {
+                        deletion.remove();
+                    });
+
+                    this.currentChangeIndex = -1;
+                }
+
+                nextChange() {
+                    // Remove highlight from current change
+                    const currentHighlight = this.editor.querySelector('.current-change');
+                    if (currentHighlight) {
+                        currentHighlight.classList.remove('current-change');
+                    }
+
+                    // Get all changes
+                    const changes = [...this.editor.querySelectorAll('.insertion, .deletion')];
+
+                    if (changes.length === 0) {
+                        this.currentChangeIndex = -1;
+                        return;
+                    }
+
+                    // Move to next change
+                    this.currentChangeIndex = (this.currentChangeIndex + 1) % changes.length;
+
+                    // Highlight the current change
+                    const currentChange = changes[this.currentChangeIndex];
+                    currentChange.classList.add('current-change');
+
+                    // Scroll change into view
+                    currentChange.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                acceptCurrentChange() {
+                    const currentChange = this.editor.querySelector('.current-change');
+                    if (!currentChange) return;
+
+                    if (currentChange.classList.contains('insertion')) {
+                        const textNode = document.createTextNode(currentChange.textContent);
+                        currentChange.parentNode.replaceChild(textNode, currentChange);
+                    } else if (currentChange.classList.contains('deletion')) {
+                        currentChange.remove();
+                    }
+
+                    // Move to next change
+                    this.currentChangeIndex--;  // Decrement because we removed a change
+                    this.nextChange();
+                }
+
+                toggleFindReplace() {
+                    this.findReplaceDialog.classList.toggle('visible');
+                    if (this.findReplaceDialog.classList.contains('visible')) {
+                        document.getElementById('findInput').focus();
+                        this.clearFindMatches();
+                    }
+                }
+
+                clearFindMatches() {
+                    const matches = this.editor.querySelectorAll('.find-match');
+                    matches.forEach(match => {
+                        const text = match.textContent;
+                        match.parentNode.replaceChild(document.createTextNode(text), match);
+                    });
+                    this.currentFindIndex = -1;
+                    this.findMatches = [];
+                }
+
+                findNext() {
+                    const searchText = document.getElementById('findInput').value;
+                    const matchCase = document.getElementById('matchCase').checked;
+                    const wholeWord = document.getElementById('wholeWord').checked;
+
+                    if (!searchText) return;
+
+                    this.clearFindMatches();
+
+                    const text = this.editor.textContent;
+                    let matches = [];
+                    let searchRegex;
+
+                    if (wholeWord) {
+                        searchRegex = new RegExp(`\\b${this.escapeRegExp(searchText)}\\b`, matchCase ? 'g' : 'gi');
+                    } else {
+                        searchRegex = new RegExp(this.escapeRegExp(searchText), matchCase ? 'g' : 'gi');
+                    }
+
+                    let match;
+                    while ((match = searchRegex.exec(text)) !== null) {
+                        matches.push({
+                            start: match.index,
+                            end: match.index + match[0].length
+                        });
+                    }
+
+                    if (matches.length > 0) {
+                        this.findMatches = matches;
+                        this.currentFindIndex = (this.currentFindIndex + 1) % matches.length;
+                        this.highlightMatches();
+                    } else {
+                        alert('No matches found');
+                    }
+                }
+
+                highlightMatches() {
+                    this.clearFindMatches();
+
+                    const text = this.editor.textContent;
+                    const fragment = document.createDocumentFragment();
+                    let lastIndex = 0;
+
+                    this.findMatches.forEach((match, index) => {
+                        // Add text before match
+                        fragment.appendChild(document.createTextNode(text.substring(lastIndex, match.start)));
+
+                        // Add highlighted match
+                        const span = document.createElement('span');
+                        span.className = 'find-match' + (index === this.currentFindIndex ? ' current' : '');
+                        span.textContent = text.substring(match.start, match.end);
+                        fragment.appendChild(span);
+
+                        lastIndex = match.end;
+                    });
+
+                    // Add remaining text
+                    fragment.appendChild(document.createTextNode(text.substring(lastIndex)));
+
+                    // Replace editor content
+                    this.editor.innerHTML = '';
+                    this.editor.appendChild(fragment);
+
+                    // Scroll current match into view
+                    const currentMatch = this.editor.querySelector('.find-match.current');
+                    if (currentMatch) {
+                        currentMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+
+                replace() {
+                    const replaceText = document.getElementById('replaceInput').value;
+                    const currentMatch = this.editor.querySelector('.find-match.current');
+
+                    if (currentMatch) {
+                        currentMatch.replaceWith(document.createTextNode(replaceText));
+                        this.findMatches.splice(this.currentFindIndex, 1);
+                        if (this.findMatches.length > 0) {
+                            this.currentFindIndex = this.currentFindIndex % this.findMatches.length;
+                            this.findNext();
+                        } else {
+                            this.clearFindMatches();
+                        }
+                    }
+                }
+
+                replaceAll() {
+                    const findText = document.getElementById('findInput').value;
+                    const replaceText = document.getElementById('replaceInput').value;
+                    const matchCase = document.getElementById('matchCase').checked;
+                    const wholeWord = document.getElementById('wholeWord').checked;
+
+                    if (!findText) return;
+
+                    let searchRegex;
+                    if (wholeWord) {
+                        searchRegex = new RegExp(`\\b${this.escapeRegExp(findText)}\\b`, matchCase ? 'g' : 'gi');
+                    } else {
+                        searchRegex = new RegExp(this.escapeRegExp(findText), matchCase ? 'g' : 'gi');
+                    }
+
+                    const newContent = this.editor.textContent.replace(searchRegex, replaceText);
+                    this.editor.textContent = newContent;
+                    this.clearFindMatches();
+                }
+
+                escapeRegExp(string) {
+                    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                }
+
+                increaseFontSize() {
+                    const select = document.getElementById('fontSizeSelect');
+                    const currentIndex = select.selectedIndex;
+                    if (currentIndex < select.options.length - 1) {
+                        select.selectedIndex = currentIndex + 1;
+                        formatDoc('fontSize', select.value);
+                    }
+                }
+
+                decreaseFontSize() {
+                    const select = document.getElementById('fontSizeSelect');
+                    const currentIndex = select.selectedIndex;
+                    if (currentIndex > 0) {
+                        select.selectedIndex = currentIndex - 1;
+                        formatDoc('fontSize', select.value);
+                    }
+                }
+
+                toggleStylesPanel() {
+                    const panel = document.getElementById('stylesPanel');
+                    panel.classList.toggle('visible');
+                }
+
+                applyStyle(styleName) {
+                    const selection = window.getSelection();
+                    const range = selection.getRangeAt(0);
+                    const paragraph = this.getClosestParagraph(range.commonAncestorContainer);
+
+                    if (paragraph) {
+                        // Remove existing styles
+                        paragraph.classList.remove('heading1', 'heading2', 'heading3', 'quote', 'code');
+
+                        if (styleName !== 'normal') {
+                            paragraph.classList.add(styleName);
+                        }
+                    }
+                }
+
+                applyCharacterStyle(styleName) {
+                    const selection = window.getSelection();
+                    if (selection.rangeCount === 0) return;
+
+                    const range = selection.getRangeAt(0);
+                    if (range.collapsed) return;
+
+                    const span = document.createElement('span');
+                    span.classList.add(styleName);
+
+                    const content = range.extractContents();
+                    span.appendChild(content);
+                    range.insertNode(span);
+
+                    // Merge adjacent spans with same style
+                    this.mergeAdjacentSpans();
+                }
+
+                mergeAdjacentSpans() {
+                    const spans = this.editor.getElementsByTagName('span');
+                    for (let i = spans.length - 1; i > 0; i--) {
+                        const current = spans[i];
+                        const previous = spans[i - 1];
+
+                        if (current.previousSibling === previous &&
+                            current.className === previous.className) {
+                            previous.textContent += current.textContent;
+                            current.remove();
+                        }
+                    }
+                }
+
+                clearFormatting() {
+                    // Get the selected text
+                    const selection = window.getSelection();
+                    const range = selection.getRangeAt(0);
+                    const content = range.extractContents();
+
+                    // Create a temporary div to hold the content
+                    const div = document.createElement('div');
+                    div.appendChild(content);
+
+                    // Get the text content without formatting
+                    const plainText = div.textContent;
+
+                    // Insert the plain text back
+                    const textNode = document.createTextNode(plainText);
+                    range.insertNode(textNode);
+
+                    // Collapse the selection to the end
+                    range.collapse(false);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+
+                    this.editor.focus();
+                }
+
+                async paste() {
+                    try {
+                        const text = await navigator.clipboard.readText();
+                        const selection = window.getSelection();
+                        const range = selection.getRangeAt(0);
+                        range.deleteContents();
+                        range.insertNode(document.createTextNode(text));
+                        this.updateCharCount();
+                    } catch (err) {
+                        console.error('Failed to paste:', err);
+                        // Fallback to execCommand for browsers that don't support clipboard API
+                        document.execCommand('paste', false);
+                    }
+                }
+
+                async cut() {
+                    try {
+                        const selection = window.getSelection();
+                        const text = selection.toString();
+                        await navigator.clipboard.writeText(text);
+                        selection.getRangeAt(0).deleteContents();
+                        this.updateCharCount();
+                    } catch (err) {
+                        console.error('Failed to cut:', err);
+                        // Fallback to execCommand
+                        document.execCommand('cut', false);
+                    }
+                }
+
+                async copy() {
+                    try {
+                        const selection = window.getSelection();
+                        const text = selection.toString();
+                        await navigator.clipboard.writeText(text);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        // Fallback to execCommand
+                        document.execCommand('copy', false);
+                    }
+                }
+
+                // Table methods
+                insertTable() {
+                    const rows = parseInt(prompt('Number of rows:', '3')) || 3;
+                    const cols = parseInt(prompt('Number of columns:', '3')) || 3;
+
+                    const table = document.createElement('table');
+                    const thead = document.createElement('thead');
+                    const tbody = document.createElement('tbody');
+
+                    // Create header row
+                    const headerRow = document.createElement('tr');
+                    for (let j = 0; j < cols; j++) {
+                        const th = document.createElement('th');
+                        th.textContent = `Header ${j + 1}`;
+                        headerRow.appendChild(th);
+                    }
+                    thead.appendChild(headerRow);
+
+                    // Create body rows
+                    for (let i = 0; i < rows - 1; i++) {
+                        const row = document.createElement('tr');
+                        for (let j = 0; j < cols; j++) {
+                            const td = document.createElement('td');
+                            td.textContent = `Cell ${i + 1},${j + 1}`;
+                            row.appendChild(td);
+                        }
+                        tbody.appendChild(row);
+                    }
+
+                    table.appendChild(thead);
+                    table.appendChild(tbody);
+
+                    const selection = window.getSelection();
+                    const range = selection.getRangeAt(0);
+                    range.deleteContents();
+                    range.insertNode(table);
+
+                    this.editor.focus();
+                }
+
+                getCurrentCell() {
+                    const selection = window.getSelection();
+                    let node = selection.anchorNode;
+                    while (node && node.nodeName !== 'TD' && node.nodeName !== 'TH') {
+                        node = node.parentNode;
+                    }
+                    return node;
+                }
+
+                getCurrentRow() {
+                    const cell = this.getCurrentCell();
+                    return cell ? cell.parentNode : null;
+                }
+
+                getCurrentTable() {
+                    const cell = this.getCurrentCell();
+                    if (!cell) return null;
+                    let node = cell;
+                    while (node && node.nodeName !== 'TABLE') {
+                        node = node.parentNode;
+                    }
+                    return node;
+                }
+
+                addRow() {
+                    const currentRow = this.getCurrentRow();
+                    if (!currentRow) return;
+
+                    const newRow = document.createElement('tr');
+                    const cells = currentRow.cells;
+
+                    for (let i = 0; i < cells.length; i++) {
+                        const cell = document.createElement('td');
+                        cell.textContent = 'New cell';
+                        newRow.appendChild(cell);
+                    }
+
+                    currentRow.parentNode.insertBefore(newRow, currentRow.nextSibling);
+                }
+
+                addColumn() {
+                    const table = this.getCurrentTable();
+                    if (!table) return;
+
+                    const rows = table.rows;
+                    for (let i = 0; i < rows.length; i++) {
+                        const cell = document.createElement(i === 0 ? 'th' : 'td');
+                        cell.textContent = i === 0 ? 'New Header' : 'New cell';
+                        rows[i].appendChild(cell);
+                    }
+                }
+
+                deleteRow() {
+                    const currentRow = this.getCurrentRow();
+                    if (!currentRow || currentRow.parentNode.rows.length <= 2) return;
+                    currentRow.remove();
+                }
+
+                deleteColumn() {
+                    const cell = this.getCurrentCell();
+                    if (!cell) return;
+
+                    const table = this.getCurrentTable();
+                    const index = cell.cellIndex;
+
+                    if (table.rows[0].cells.length <= 1) return;
+
+                    for (let i = 0; i < table.rows.length; i++) {
+                        table.rows[i].deleteCell(index);
+                    }
+                }
+            }
+
+            // Initialize the editor
+            const editor = new SimpleEditor('editor');
+
+            // Formatting functions
+            function formatDoc(command, value = null) {
+                document.execCommand(command, false, value);
+                editor.editor.focus();
+            }
+
+            function createNewParagraph() {
+                editor.createNewParagraph();
+                editor.editor.focus();
+            }
+        </script>
+</body>
+
+</html>
