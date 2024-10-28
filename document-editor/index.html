@@ -7,6 +7,40 @@
     <title>Document Editor</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
+        /* Split view styles */
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #editor {
+                visibility: visible;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            #editor * {
+                visibility: visible;
+            }
+
+            .insertion,
+            .deletion,
+            .change-info,
+            .resize-handle,
+            .find-match {
+                background: none !important;
+                border: none !important;
+                text-decoration: none !important;
+            }
+        }
+
         :root {
             --word-blue: #2b579a;
             --toolbar-bg: #f3f2f1;
@@ -38,32 +72,36 @@
         .main-container {
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 40px);
+            height: calc(100vh);
         }
 
         .content-container {
             display: flex;
             flex: 1;
             justify-content: center;
-            padding: 20px;
+            padding: 0px;
             overflow: auto;
         }
 
         .editor-container {
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 21cm;
-            min-height: 29.7cm;
-            padding: 2.54cm;
-            margin: 20px;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            padding: 20px;
             box-sizing: border-box;
         }
 
         #editor {
-            min-height: 100%;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 21cm;
+            margin: 0 auto;
+            padding: 2.54cm;
+            box-sizing: border-box;
             outline: none;
             font-size: 11pt;
             line-height: 1.15;
+            min-height: 29.7cm;
         }
 
         #editor:focus {
@@ -110,6 +148,9 @@
             gap: 2px;
             background: var(--toolbar-bg);
             border-bottom: 1px solid var(--border-color);
+            white-space: nowrap;
+            overflow-x: auto;
+            flex-wrap: nowrap;
         }
 
         .ribbon-group {
@@ -118,6 +159,7 @@
             padding: 4px 8px;
             border-right: 1px solid var(--border-color);
             min-width: 80px;
+            flex-shrink: 0;
         }
 
         .ribbon-group-title {
@@ -130,7 +172,7 @@
         .ribbon-buttons {
             display: flex;
             gap: 2px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
         }
 
@@ -161,6 +203,17 @@
         .ribbon button.active {
             background: rgba(0, 0, 0, 0.1);
             border-color: var(--border-color);
+            position: relative;
+        }
+
+        .ribbon button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--word-blue);
         }
 
         .ribbon i.bi {
@@ -226,7 +279,6 @@
         .status {
             font-size: 0.8em;
             color: #666;
-            margin-top: 10px;
             display: flex;
             gap: 20px;
             padding: 10px;
@@ -413,6 +465,15 @@
             letter-spacing: 0.5px;
         }
 
+        /* Custom spelling error style */
+        #editor *::-webkit-spelling-error {
+            text-decoration: underline red 2px;
+        }
+
+        #editor *::spelling-error {
+            text-decoration: underline red 2px;
+        }
+
         .change-entry {
             padding: 8px;
             border-bottom: 1px solid #eee;
@@ -480,6 +541,117 @@
             outline: 2px solid #ff9800;
         }
 
+        .properties-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            z-index: 1000;
+            width: 400px;
+            display: none;
+        }
+
+        .properties-dialog.visible {
+            display: block;
+        }
+
+        .properties-dialog h3 {
+            margin-top: 0;
+            color: var(--word-blue);
+        }
+
+        .properties-dialog .form-group {
+            margin-bottom: 15px;
+        }
+
+        .properties-dialog label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .properties-dialog input,
+        .properties-dialog textarea {
+            width: calc(100% - 16px);
+            margin: 0 8px;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+        }
+
+        .properties-dialog .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .properties-dialog button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            background: var(--toolbar-bg);
+            cursor: pointer;
+        }
+
+        .properties-dialog button:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .properties-dialog .readonly-field {
+            background: #f5f5f5;
+            cursor: not-allowed;
+        }
+
+        /* Image resize styles */
+        #editor img {
+            max-width: 100%;
+            position: relative;
+        }
+
+        .resize-handle {
+            width: 8px;
+            height: 8px;
+            background-color: #007bff;
+            position: absolute;
+            border: 1px solid white;
+            border-radius: 50%;
+        }
+
+        .resize-handle.nw {
+            cursor: nw-resize;
+            top: -4px;
+            left: -4px;
+        }
+
+        .resize-handle.ne {
+            cursor: ne-resize;
+            top: -4px;
+            right: -4px;
+        }
+
+        .resize-handle.sw {
+            cursor: sw-resize;
+            bottom: -4px;
+            left: -4px;
+        }
+
+        .resize-handle.se {
+            cursor: se-resize;
+            bottom: -4px;
+            right: -4px;
+        }
+
+        .resizable-image {
+            position: relative;
+            display: inline-block;
+        }
+
         /* Table styles */
         #editor table {
             border-collapse: collapse;
@@ -495,14 +667,156 @@
             position: relative;
         }
 
-        #editor th {
+        /* Default theme */
+        .table-theme-default th {
             background-color: #f3f2f1;
             font-weight: bold;
         }
 
-        #editor td:hover,
-        #editor th:hover {
+        .table-theme-default td:hover,
+        .table-theme-default th:hover {
             outline: 2px solid var(--word-blue);
+        }
+
+        /* Professional theme */
+        .table-theme-professional {
+            border: 2px solid #2b579a;
+        }
+
+        .table-theme-professional th {
+            background-color: #2b579a;
+            color: white;
+            font-weight: bold;
+            border: 1px solid #1e3f6f;
+        }
+
+        .table-theme-professional td {
+            border: 1px solid #b8cce4;
+        }
+
+        .table-theme-professional tr:nth-child(even) {
+            background-color: #f5f9ff;
+        }
+
+        /* Minimal theme */
+        .table-theme-minimal {
+            border: none;
+        }
+
+        .table-theme-minimal th {
+            border-bottom: 2px solid #333;
+            background: none;
+            font-weight: bold;
+        }
+
+        .table-theme-minimal td {
+            border: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Colorful theme */
+        .table-theme-colorful th {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: 1px solid #ff5252;
+        }
+
+        .table-theme-colorful tr:nth-child(even) {
+            background-color: #fff5f5;
+        }
+
+        .table-theme-colorful td {
+            border: 1px solid #ffcdd2;
+        }
+
+        /* Grid theme */
+        .table-theme-grid {
+            border: 2px solid #ddd;
+        }
+
+        .table-theme-grid th,
+        .table-theme-grid td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+
+        .table-theme-grid th {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #ddd;
+        }
+
+        /* Comments styles */
+        .comments-panel {
+            position: fixed;
+            right: 0;
+            top: 100px;
+            bottom: 0;
+            width: 300px;
+            background: white;
+            border-left: 1px solid var(--border-color);
+            padding: 16px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .comments-panel.visible {
+            display: block;
+        }
+
+        .comment-entry {
+            padding: 8px;
+            margin-bottom: 8px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            border-left: 3px solid var(--word-blue);
+        }
+
+        .comment-text {
+            margin-bottom: 4px;
+        }
+
+        .comment-meta {
+            font-size: 0.8em;
+            color: #666;
+            position: relative;
+        }
+
+        .delete-comment {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 2px 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .delete-comment:hover {
+            background: #ff0000;
+        }
+
+        .commented-text {
+            background-color: #fff3cd;
+            position: relative;
+        }
+
+        .commented-text.highlight {
+            background-color: #ffc107;
+        }
+
+        .comment-indicator {
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background-color: var(--word-blue);
+            border-radius: 50%;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -515,11 +829,12 @@
 
         <div class="ribbon">
             <div class="ribbon-tabs">
-                <button class="ribbon-tab active" data-tab="home">Home</button>
+                <button class="ribbon-tab" data-tab="file">File</button>
+                <button class="ribbon-tab active" data-tab="format">Format</button>
                 <button class="ribbon-tab" data-tab="insert">Insert</button>
                 <button class="ribbon-tab" data-tab="review">Review</button>
             </div>
-            <div class="ribbon-content" id="homeTab">
+            <div class="ribbon-content" id="formatTab">
                 <!-- Clipboard -->
                 <div class="ribbon-group">
                     <div class="ribbon-buttons">
@@ -539,10 +854,23 @@
                     <div class="ribbon-group-title">Clipboard</div>
                 </div>
 
-                <!-- Font -->
+
+
+                <!-- Find -->
                 <div class="ribbon-group">
                     <div class="ribbon-buttons">
-                        <select onchange="formatDoc('fontName', this.value)">
+                        <button onclick="editor.toggleFindReplace()" title="Find & Replace">
+                            <i class="bi bi-search"></i>
+                            <span>Find</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Find</div>
+                </div>
+
+                <!-- Font -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons" style="display: flex; gap: 2px; align-items: center;">
+                        <select onchange="formatDoc('fontName', this.value)" style="min-width: 100px;">
                             <option value="">Calibri</option>
                             <option value="Arial">Arial</option>
                             <option value="Times New Roman">Times New Roman</option>
@@ -551,7 +879,8 @@
                             <option value="Georgia">Georgia</option>
                             <option value="Segoe UI">Segoe UI</option>
                         </select>
-                        <select id="fontSizeSelect" onchange="formatDoc('fontSize', this.value)">
+                        <select id="fontSizeSelect" onchange="formatDoc('fontSize', this.value)"
+                            style="min-width: 45px;">
                             <option value="3">11</option>
                             <option value="1">8</option>
                             <option value="2">10</option>
@@ -560,38 +889,38 @@
                             <option value="6">16</option>
                             <option value="7">18</option>
                         </select>
-                        <div class="ribbon-buttons small">
-                            <button onclick="editor.increaseFontSize()" title="Increase Font Size">
-                                <i class="bi bi-plus"></i>A
-                            </button>
-                            <button onclick="editor.decreaseFontSize()" title="Decrease Font Size">
-                                <i class="bi bi-dash"></i>A
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ribbon-group-title">Font</div>
-                </div>
-
-                <!-- Text Formatting -->
-                <div class="ribbon-group">
-                    <div class="ribbon-buttons small">
-                        <button onclick="formatDoc('bold')" title="Bold">
+                        <button onclick="editor.increaseFontSize()" title="Increase Font Size"
+                            style="padding: 2px; min-width: 32px;">
+                            <i class="bi bi-plus"></i>A
+                        </button>
+                        <button onclick="editor.decreaseFontSize()" title="Decrease Font Size"
+                            style="padding: 2px; min-width: 32px;">
+                            <i class="bi bi-dash"></i>A
+                        </button>
+                        <button onclick="formatDoc('bold')" title="Bold" style="padding: 2px; min-width: 32px;">
                             <i class="bi bi-type-bold"></i>
                         </button>
-                        <button onclick="formatDoc('italic')" title="Italic">
+                        <button onclick="formatDoc('italic')" title="Italic" style="padding: 2px; min-width: 32px;">
                             <i class="bi bi-type-italic"></i>
                         </button>
-                        <button onclick="formatDoc('underline')" title="Underline">
+                        <button onclick="formatDoc('underline')" title="Underline"
+                            style="padding: 2px; min-width: 32px;">
                             <i class="bi bi-type-underline"></i>
                         </button>
-                        <button onclick="formatDoc('strikeThrough')" title="Strikethrough">
+                        <button onclick="formatDoc('strikeThrough')" title="Strikethrough"
+                            style="padding: 2px; min-width: 32px;">
                             <i class="bi bi-type-strikethrough"></i>
                         </button>
-                        <button onclick="editor.clearFormatting()" title="Clear Formatting">
+                        <button onclick="editor.clearFormatting()" title="Clear Formatting"
+                            style="padding: 2px; min-width: 32px;">
                             <i class="bi bi-eraser"></i>
                         </button>
+                        <button onclick="editor.toggleStylesPanel()" title="Styles"
+                            style="padding: 2px; min-width: 32px;">
+                            <i class="bi bi-type"></i>
+                        </button>
                     </div>
-                    <div class="ribbon-group-title">Formatting</div>
+                    <div class="ribbon-group-title">Font</div>
                 </div>
 
                 <!-- Paragraph -->
@@ -628,12 +957,19 @@
                 </div>
 
                 <!-- Tables -->
-                <div class="ribbon-group">
+                <div class="ribbon-group" id="tableGroup" style="display: none;">
                     <div class="ribbon-buttons">
                         <button onclick="editor.insertTable()" title="Insert Table">
                             <i class="bi bi-table"></i>
                             <span>Table</span>
                         </button>
+                        <select onchange="editor.applyTableTheme(this.value)" title="Table Theme">
+                            <option value="default">Default Theme</option>
+                            <option value="professional">Professional</option>
+                            <option value="minimal">Minimal</option>
+                            <option value="colorful">Colorful</option>
+                            <option value="grid">Grid</option>
+                        </select>
                     </div>
                     <div class="ribbon-buttons small">
                         <button onclick="editor.addRow()" title="Add Row">
@@ -652,33 +988,30 @@
                     <div class="ribbon-group-title">Table</div>
                 </div>
 
-                <!-- Review -->
+            </div>
+
+            <div class="ribbon-content" id="fileTab" style="display: none;">
+                <!-- File operations -->
                 <div class="ribbon-group">
                     <div class="ribbon-buttons">
-                        <button id="trackChanges" onclick="editor.toggleTrackChanges()" title="Track Changes">
-                            <i class="bi bi-pencil-square"></i>
-                            <span>Track Changes</span>
+                        <button onclick="editor.importDocument()" title="Import">
+                            <i class="bi bi-file-earmark-arrow-down"></i>
+                            <span>Import</span>
                         </button>
-                        <button onclick="editor.toggleChangeSummary()" title="Show Changes">
-                            <i class="bi bi-list-check"></i>
-                            <span>Show Changes</span>
+                        <button onclick="editor.exportDocument()" title="Export">
+                            <i class="bi bi-file-earmark-arrow-up"></i>
+                            <span>Export</span>
                         </button>
-                    </div>
-                    <div class="ribbon-buttons small">
-                        <button onclick="editor.previousChange()" title="Previous">
-                            <i class="bi bi-arrow-left-circle"></i>
+                        <button onclick="editor.showProperties()" title="Properties">
+                            <i class="bi bi-info-circle"></i>
+                            <span>Properties</span>
                         </button>
-                        <button onclick="editor.nextChange()" title="Next">
-                            <i class="bi bi-arrow-right-circle"></i>
-                        </button>
-                        <button onclick="editor.acceptCurrentChange()" title="Accept">
-                            <i class="bi bi-check-circle"></i>
-                        </button>
-                        <button onclick="editor.rejectCurrentChange()" title="Reject">
-                            <i class="bi bi-x-circle"></i>
+                        <button onclick="editor.exportAsDocx()" title="Export as DOCX">
+                            <i class="bi bi-file-earmark-word"></i>
+                            <span>Export DOCX</span>
                         </button>
                     </div>
-                    <div class="ribbon-group-title">Review</div>
+                    <div class="ribbon-group-title">File Operations</div>
                 </div>
             </div>
 
@@ -700,7 +1033,34 @@
             </div>
 
             <div class="ribbon-content" id="reviewTab" style="display: none;">
-                <!-- Review tab content -->
+                <!-- Comments -->
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <button onclick="editor.addComment()" title="Add Comment">
+                            <i class="bi bi-chat-right-text"></i>
+                            <span>New Comment</span>
+                        </button>
+                        <button onclick="editor.toggleComments()" title="Show Comments">
+                            <i class="bi bi-chat-right"></i>
+                            <span>Show Comments</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Comments</div>
+                </div>
+                <div class="ribbon-group">
+                    <div class="ribbon-buttons">
+                        <button onclick="editor.toggleSpellCheck()" title="Spell Check">
+                            <i class="bi bi-spellcheck"></i>
+                            <span>Spell Check</span>
+                        </button>
+                        <button onclick="editor.toggleAutoCorrect()" title="Auto Correct">
+                            <i class="bi bi-pencil-square"></i>
+                            <span>Auto Correct</span>
+                        </button>
+                    </div>
+                    <div class="ribbon-group-title">Proofing</div>
+                </div>
+
                 <div class="ribbon-group">
                     <div class="ribbon-buttons">
                         <button id="trackChanges" onclick="editor.toggleTrackChanges()" title="Track Changes">
@@ -730,13 +1090,14 @@
                 </div>
             </div>
 
-            <input type="file" id="importFile" style="display: none" onchange="editor.importDocument(event)">
+            <input type="file" id="importFile" accept=".html,.docx" style="display: none"
+                onchange="editor.handleImportFile(event)">
             <input type="file" id="imageInput" accept="image/*" style="display: none"
                 onchange="editor.insertImageFromFile(this.files[0])">
         </div>
 
         <div class="content-container">
-            <div class="editor-container">
+            <div class="editor-container" id="mainEditorContainer">
                 <div id="editor" contenteditable="true">
                     <p>Start typing here. This is a simple HTML editor that works directly with the DOM.</p>
                     <p>Try using the formatting buttons above or just type normally.</p>
@@ -778,6 +1139,42 @@
             <div id="changesList"></div>
         </div>
 
+        <div id="propertiesDialog" class="properties-dialog">
+            <h3>Document Properties</h3>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="docTitle">
+            </div>
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" id="docAuthor">
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" id="docSubject">
+            </div>
+            <div class="form-group">
+                <label>Keywords</label>
+                <input type="text" id="docKeywords">
+            </div>
+            <div class="form-group">
+                <label>Created</label>
+                <input type="text" id="docCreated" class="readonly-field" readonly>
+            </div>
+            <div class="form-group">
+                <label>Last Modified</label>
+                <input type="text" id="docModified" class="readonly-field" readonly>
+            </div>
+            <div class="form-group">
+                <label>Comments</label>
+                <textarea id="docComments" rows="3"></textarea>
+            </div>
+            <div class="buttons">
+                <button onclick="editor.closeProperties()">Cancel</button>
+                <button onclick="editor.saveProperties()">Save</button>
+            </div>
+        </div>
+
         <div id="stylesPanel" class="styles-panel">
             <h3>Styles</h3>
             <div class="styles-section">
@@ -799,13 +1196,164 @@
             </div>
         </div>
 
+        <!-- Comments Panel -->
+        <div id="commentsPanel" class="comments-panel">
+            <h3>Comments</h3>
+            <div id="commentsList"></div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
         <script>
+            async function parseDocx(file) {
+                const arrayBuffer = await file.arrayBuffer();
+                const dataView = new DataView(arrayBuffer);
+
+                if (dataView.getUint32(0) !== 0x504b0304) {
+                    throw new Error('Not a valid DOCX file');
+                }
+
+                async function extractDocumentXml() {
+                    try {
+                        const zip = new JSZip();
+                        await zip.loadAsync(arrayBuffer);
+
+                        const documentXml = zip.file('word/document.xml');
+                        if (!documentXml) {
+                            throw new Error('Could not find word/document.xml in the DOCX file');
+                        }
+
+                        const content = await documentXml.async('string');
+                        return content;
+                    } catch (error) {
+                        throw new Error(`Failed to extract document.xml: ${error.message}`);
+                    }
+                }
+
+                function convertToHtml(xmlString) {
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+                    let html = '<div class="docx-content">';
+
+                    function processTextNode(node) {
+                        let text = node.textContent;
+                        let formattedText = text;
+
+                        let run = node;
+                        while (run && run.tagName !== 'w:r') {
+                            run = run.parentNode;
+                        }
+                        if (run) {
+                            const rPr = run.getElementsByTagName('w:rPr')[0];
+                            if (rPr) {
+                                if (rPr.getElementsByTagName('w:b').length > 0) {
+                                    formattedText = `<strong>${formattedText}</strong>`;
+                                }
+                                if (rPr.getElementsByTagName('w:i').length > 0) {
+                                    formattedText = `<em>${formattedText}</em>`;
+                                }
+                                if (rPr.getElementsByTagName('w:u').length > 0) {
+                                    formattedText = `<u>${formattedText}</u>`;
+                                }
+                            }
+                        }
+
+                        return formattedText;
+                    }
+
+                    function processParagraph(p) {
+                        const pPr = p.getElementsByTagName('w:pPr')[0];
+                        let tag = 'p';
+                        let classes = [];
+
+                        if (pPr) {
+                            const pStyle = pPr.getElementsByTagName('w:pStyle')[0];
+                            const styleId = pStyle?.getAttribute('w:val');
+                            if (styleId?.startsWith('Heading')) {
+                                const level = styleId.replace('Heading', '');
+                                if (!isNaN(level) && level >= 1 && level <= 6) {
+                                    tag = `h${level}`;
+                                }
+                            }
+
+                            const jc = pPr.getElementsByTagName('w:jc')[0];
+                            const alignment = jc?.getAttribute('w:val');
+                            if (alignment) {
+                                classes.push(`align-${alignment}`);
+                            }
+
+                            const numPr = pPr.getElementsByTagName('w:numPr')[0];
+                            if (numPr) {
+                                tag = 'li';
+                            }
+                        }
+
+                        const textNodes = p.getElementsByTagName('w:t');
+                        const textContent = Array.from(textNodes)
+                            .map(t => processTextNode(t))
+                            .join('');
+
+                        const classAttr = classes.length ? ` class="${classes.join(' ')}"` : '';
+                        return textContent ? `<${tag}${classAttr}>${textContent}</${tag}>` : '';
+                    }
+
+                    const paragraphs = xmlDoc.getElementsByTagName('w:p');
+                    let inList = false;
+
+                    for (const p of paragraphs) {
+                        const pPr = p.getElementsByTagName('w:pPr')[0];
+                        const isListItem = pPr?.getElementsByTagName('w:numPr')[0];
+
+                        if (isListItem && !inList) {
+                            html += '<ul>';
+                            inList = true;
+                        } else if (!isListItem && inList) {
+                            html += '</ul>';
+                            inList = false;
+                        }
+
+                        html += processParagraph(p);
+                    }
+
+                    if (inList) {
+                        html += '</ul>';
+                    }
+
+                    html += '</div>';
+
+                    const style = `
+                        <style>
+                            .docx-content { font-family: Arial, sans-serif; line-height: 1.5; }
+                            .align-center { text-align: center; }
+                            .align-right { text-align: right; }
+                            .align-justify { text-align: justify; }
+                            h1, h2, h3, h4, h5, h6 { margin: 1em 0 0.5em; }
+                            p { margin: 0 0 1em; }
+                            ul { margin: 0 0 1em 2em; }
+                        </style>
+                    `;
+
+                    return style + html;
+                }
+
+                try {
+                    const xmlContent = await extractDocumentXml();
+                    return convertToHtml(xmlContent);
+                } catch (error) {
+                    throw new Error(`Failed to parse DOCX: ${error.message}`);
+                }
+            }
+
             class SimpleEditor {
                 constructor(elementId) {
+                    this.deletedCommentIds = new Set();
                     this.editor = document.getElementById(elementId);
                     this.charCount = document.getElementById('charCount');
                     this.trackChangesEnabled = false;
+                    this.comments = [];
+                    this.nextCommentId = 1;
                     this.trackChangesBtn = document.getElementById('trackChanges');
+                    this.spellCheckEnabled = true;
+                    this.autoCorrectEnabled = true;
                     this.currentChangeIndex = -1;
                     this.findReplaceDialog = document.getElementById('findReplaceDialog');
                     this.currentFindIndex = -1;
@@ -814,6 +1362,7 @@
                     this.updateCharCount();
                     this.setupAutoSave();
                 }
+
 
                 setupAutoSave() {
                     // Auto-save every 5 seconds
@@ -834,6 +1383,45 @@
                     const timestamp = new Date().toISOString();
                     localStorage.setItem('documentContent', content);
                     localStorage.setItem('lastSaved', timestamp);
+
+                    // Update last modified time
+                    this.properties.modified = timestamp;
+                    this.saveProperties(false); // Don't close dialog during auto-save
+                }
+
+                showProperties() {
+                    const dialog = document.getElementById('propertiesDialog');
+                    dialog.classList.add('visible');
+
+                    // Fill in the form
+                    document.getElementById('docTitle').value = this.properties.title || '';
+                    document.getElementById('docAuthor').value = this.properties.author || '';
+                    document.getElementById('docSubject').value = this.properties.subject || '';
+                    document.getElementById('docKeywords').value = this.properties.keywords || '';
+                    document.getElementById('docComments').value = this.properties.comments || '';
+                    document.getElementById('docCreated').value = new Date(this.properties.created).toLocaleString();
+                    document.getElementById('docModified').value = new Date(this.properties.modified).toLocaleString();
+                }
+
+                closeProperties() {
+                    document.getElementById('propertiesDialog').classList.remove('visible');
+                }
+
+                saveProperties(closeDialog = true) {
+                    if (document.getElementById('propertiesDialog').classList.contains('visible')) {
+                        // Update from form
+                        this.properties.title = document.getElementById('docTitle').value;
+                        this.properties.author = document.getElementById('docAuthor').value;
+                        this.properties.subject = document.getElementById('docSubject').value;
+                        this.properties.keywords = document.getElementById('docKeywords').value;
+                        this.properties.comments = document.getElementById('docComments').value;
+                        if (closeDialog) {
+                            this.closeProperties();
+                        }
+                    }
+
+                    // Save to localStorage
+                    localStorage.setItem('documentProperties', JSON.stringify(this.properties));
                 }
 
                 autoLoad() {
@@ -842,11 +1430,42 @@
                         this.editor.innerHTML = content;
                         this.updateCharCount();
                     }
+
+                    // Load document properties
+                    this.properties = JSON.parse(localStorage.getItem('documentProperties') || '{}');
+                    if (!this.properties.created) {
+                        this.properties = {
+                            title: '',
+                            author: '',
+                            subject: '',
+                            keywords: '',
+                            comments: '',
+                            created: new Date().toISOString(),
+                            modified: new Date().toISOString()
+                        };
+                        this.saveProperties();
+                    }
                 }
 
                 exportDocument() {
-                    const content = this.editor.innerHTML;
-                    const blob = new Blob([content], { type: 'text/html' });
+                    // Create a full HTML document with meta tags
+                    const docTemplate = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="doc-title" content="${this.properties.title || ''}">
+    <meta name="doc-author" content="${this.properties.author || ''}">
+    <meta name="doc-subject" content="${this.properties.subject || ''}">
+    <meta name="doc-keywords" content="${this.properties.keywords || ''}">
+    <meta name="doc-comments" content="${this.properties.comments || ''}">
+    <meta name="doc-created" content="${this.properties.created || ''}">
+    <meta name="doc-modified" content="${this.properties.modified || ''}">
+</head>
+<body>
+${this.editor.innerHTML}
+</body>
+</html>`;
+                    const blob = new Blob([docTemplate], { type: 'text/html' });
                     const url = window.URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
@@ -855,18 +1474,64 @@
                     window.URL.revokeObjectURL(url);
                 }
 
-                importDocument(event) {
+                importDocument() {
+                    document.getElementById('importFile').click();
+                }
+
+                async handleImportFile(event) {
                     const file = event.target.files[0];
                     if (!file) return;
 
                     if (confirm('Import this document? Current content will be replaced.')) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            this.editor.innerHTML = e.target.result;
-                            this.updateCharCount();
-                            event.target.value = ''; // Reset file input
-                        };
-                        reader.readAsText(file);
+                        if (file.name.toLowerCase().endsWith('.docx')) {
+                            try {
+                                const htmlContent = await parseDocx(file);
+                                const parser = new DOMParser();
+                                const doc = parser.parseFromString(htmlContent, 'text/html');
+                                const content = doc.querySelector('.docx-content');
+                                if (content) {
+                                    this.editor.innerHTML = content.innerHTML;
+                                    this.updateCharCount();
+                                } else {
+                                    throw new Error('Could not parse DOCX content');
+                                }
+                            } catch (error) {
+                                alert(`Error importing DOCX: ${error.message}`);
+                                console.error(error);
+                            }
+                        } else {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                const parser = new DOMParser();
+                                const doc = parser.parseFromString(e.target.result, 'text/html');
+
+                                // Extract meta tags
+                                const metaTags = doc.getElementsByTagName('meta');
+                                const newProperties = {};
+                                for (let meta of metaTags) {
+                                    const name = meta.getAttribute('name');
+                                    if (name && name.startsWith('doc-')) {
+                                        const prop = name.replace('doc-', '');
+                                        newProperties[prop] = meta.getAttribute('content');
+                                    }
+                                }
+
+                                // Update properties if found
+                                if (Object.keys(newProperties).length > 0) {
+                                    this.properties = {
+                                        ...this.properties,
+                                        ...newProperties
+                                    };
+                                    this.saveProperties(false);
+                                }
+
+                                // Update content
+                                this.editor.innerHTML = doc.body.innerHTML;
+                                this.updateCharCount();
+                            };
+                            reader.readAsText(file);
+                        }
+                        event.target.value = ''; // Reset file input
                     }
                 }
 
@@ -963,6 +1628,25 @@
                     this.editor.addEventListener('keydown', this.handleKeyDown.bind(this));
                     this.editor.addEventListener('input', this.handleInput.bind(this));
                     this.editor.addEventListener('paste', this.handlePaste.bind(this));
+                    this.editor.addEventListener('click', this.handleClick.bind(this));
+                    this.editor.addEventListener('keyup', this.handleClick.bind(this));
+
+                    // Add global keyboard shortcuts
+                    document.addEventListener('keydown', (e) => {
+                        if (e.metaKey || e.ctrlKey) {
+                            if (e.key === 'f') {
+                                e.preventDefault();
+                                this.toggleFindReplace();
+                            } else if (e.key === 'p') {
+                                e.preventDefault();
+                                window.print();
+                            }
+                        }
+                    });
+
+                    // Set initial spell check state
+                    this.editor.spellcheck = this.spellCheckEnabled;
+                    this.editor.setAttribute('autocorrect', this.autoCorrectEnabled ? 'on' : 'off');
 
                     // Add tab switching functionality
                     document.querySelectorAll('.ribbon-tab').forEach(tab => {
@@ -1049,6 +1733,11 @@
                 }
 
                 handleInput(e) {
+                    // Check for deleted comments
+                    if (e.inputType === 'deleteContentBackward' || e.inputType === 'deleteContentForward') {
+                        this.checkForDeletedComments();
+                    }
+
                     if (this.trackChangesEnabled && e.inputType === 'insertText' && e.data) {
                         // Remove the character that was just inserted
                         document.execCommand('undo');
@@ -1464,6 +2153,163 @@
                     }
                 }
 
+                makeImageResizable(container) {
+                    const img = container.querySelector('img');
+                    const handles = container.querySelectorAll('.resize-handle');
+
+                    handles.forEach(handle => {
+                        handle.addEventListener('mousedown', e => {
+                            e.preventDefault();
+                            const startX = e.clientX;
+                            const startY = e.clientY;
+                            const startWidth = img.offsetWidth;
+                            const startHeight = img.offsetHeight;
+                            const handleClass = handle.className.split(' ')[1];
+
+                            const onMouseMove = e => {
+                                const deltaX = e.clientX - startX;
+                                const deltaY = e.clientY - startY;
+
+                                let newWidth = startWidth;
+                                let newHeight = startHeight;
+
+                                // Calculate new dimensions based on handle position
+                                switch (handleClass) {
+                                    case 'se':
+                                        newWidth = startWidth + deltaX;
+                                        newHeight = startHeight + deltaY;
+                                        break;
+                                    case 'sw':
+                                        newWidth = startWidth - deltaX;
+                                        newHeight = startHeight + deltaY;
+                                        break;
+                                    case 'ne':
+                                        newWidth = startWidth + deltaX;
+                                        newHeight = startHeight - deltaY;
+                                        break;
+                                    case 'nw':
+                                        newWidth = startWidth - deltaX;
+                                        newHeight = startHeight - deltaY;
+                                        break;
+                                }
+
+                                // Maintain aspect ratio
+                                const aspectRatio = startWidth / startHeight;
+                                if (Math.abs(newWidth / newHeight - aspectRatio) > 0.1) {
+                                    newHeight = newWidth / aspectRatio;
+                                }
+
+                                // Apply minimum size
+                                if (newWidth >= 50 && newHeight >= 50) {
+                                    img.style.width = `${newWidth}px`;
+                                    img.style.height = `${newHeight}px`;
+                                }
+                            };
+
+                            const onMouseUp = () => {
+                                document.removeEventListener('mousemove', onMouseMove);
+                                document.removeEventListener('mouseup', onMouseUp);
+                            };
+
+                            document.addEventListener('mousemove', onMouseMove);
+                            document.addEventListener('mouseup', onMouseUp);
+                        });
+                    });
+                }
+
+                exportAsDocx() {
+                    // Get content from editor
+                    const content = this.editor.innerHTML;
+
+                    // Create minimal Word document XML
+                    const wordDoc = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+    <w:body>${this.convertHtmlToWordML(content)}</w:body>
+</w:document>`;
+
+                    // Create content types XML
+                    const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+    <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+    <Default Extension="xml" ContentType="application/xml"/>
+    <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`;
+
+                    // Create rels file
+                    const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+    <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="/word/document.xml"/>
+</Relationships>`;
+
+                    // Create ZIP file containing the Word document
+                    const zip = new JSZip();
+                    zip.file("[Content_Types].xml", contentTypes);
+                    zip.file("_rels/.rels", rels);
+                    zip.file("word/document.xml", wordDoc);
+
+                    // Generate and download the DOCX file
+                    zip.generateAsync({ type: "blob" })
+                        .then(function (content) {
+                            const link = document.createElement('a');
+                            link.href = URL.createObjectURL(content);
+                            link.download = "document.docx";
+                            link.click();
+                        });
+                }
+
+                convertHtmlToWordML(html) {
+                    // Convert headings
+                    html = html.replace(/<h([1-6])>(.*?)<\/h\1>/g, function (match, level, content) {
+                        return `<w:p><w:pPr><w:pStyle w:val="Heading${level}"/></w:pPr><w:r><w:t xml:space="preserve">${content}</w:t></w:r></w:p>`;
+                    });
+
+                    // Convert lists
+                    html = html.replace(/<ul>(.*?)<\/ul>/g, function (match, content) {
+                        return content.replace(/<li>(.*?)<\/li>/g,
+                            '<w:p><w:pPr><w:pStyle w:val="ListBullet"/></w:pPr><w:r><w:t xml:space="preserve">$1</w:t></w:r></w:p>'
+                        );
+                    });
+
+                    html = html.replace(/<ol>(.*?)<\/ol>/g, function (match, content) {
+                        return content.replace(/<li>(.*?)<\/li>/g,
+                            '<w:p><w:pPr><w:pStyle w:val="ListNumber"/></w:pPr><w:r><w:t xml:space="preserve">$1</w:t></w:r></w:p>'
+                        );
+                    });
+
+                    // Convert paragraphs and inline formatting
+                    return html
+                        .replace(/<p>(.*?)<\/p>/g, function (match, content) {
+                            // Handle inline formatting
+                            content = content
+                                // Bold
+                                .replace(/<b>(.*?)<\/b>/g,
+                                    '</w:t></w:r><w:r><w:rPr><w:b/></w:rPr><w:t xml:space="preserve">$1</w:t></w:r><w:r><w:t xml:space="preserve">'
+                                )
+                                // Italic
+                                .replace(/<i>(.*?)<\/i>/g,
+                                    '</w:t></w:r><w:r><w:rPr><w:i/></w:rPr><w:t xml:space="preserve">$1</w:t></w:r><w:r><w:t xml:space="preserve">'
+                                )
+                                // Underline
+                                .replace(/<u>(.*?)<\/u>/g,
+                                    '</w:t></w:r><w:r><w:rPr><w:u w:val="single"/></w:rPr><w:t xml:space="preserve">$1</w:t></w:r><w:r><w:t xml:space="preserve">'
+                                )
+                                // Strike-through
+                                .replace(/<s>(.*?)<\/s>/g,
+                                    '</w:t></w:r><w:r><w:rPr><w:strike/></w:rPr><w:t xml:space="preserve">$1</w:t></w:r><w:r><w:t xml:space="preserve">'
+                                )
+                                // Subscript
+                                .replace(/<sub>(.*?)<\/sub>/g,
+                                    '</w:t></w:r><w:r><w:rPr><w:vertAlign w:val="subscript"/></w:rPr><w:t xml:space="preserve">$1</w:t></w:r><w:r><w:t xml:space="preserve">'
+                                )
+                                // Superscript
+                                .replace(/<sup>(.*?)<\/sup>/g,
+                                    '</w:t></w:r><w:r><w:rPr><w:vertAlign w:val="superscript"/></w:rPr><w:t xml:space="preserve">$1</w:t></w:r><w:r><w:t xml:space="preserve">'
+                                );
+                            return `<w:p><w:r><w:t xml:space="preserve">${content}</w:t></w:r></w:p>`;
+                        })
+                        .replace(/<br\s*\/?>/g, '<w:r><w:br/></w:r>');
+                }
+
                 async copy() {
                     try {
                         const selection = window.getSelection();
@@ -1476,12 +2322,53 @@
                     }
                 }
 
+                insertImageFromFile(file) {
+                    if (!file || !file.type.startsWith('image/')) {
+                        alert('Please select a valid image file');
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const container = document.createElement('div');
+                        container.className = 'resizable-image';
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '100%';
+                        container.appendChild(img);
+
+                        // Add resize handles
+                        ['nw', 'ne', 'sw', 'se'].forEach(pos => {
+                            const handle = document.createElement('div');
+                            handle.className = `resize-handle ${pos}`;
+                            container.appendChild(handle);
+                        });
+
+                        const selection = window.getSelection();
+                        const range = selection.getRangeAt(0);
+                        range.deleteContents();
+                        range.insertNode(container);
+
+                        // Add resize functionality
+                        this.makeImageResizable(container);
+
+                        // Move cursor after container
+                        range.setStartAfter(container);
+                        range.setEndAfter(container);
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+                    };
+                    reader.readAsDataURL(file);
+                }
+
                 // Table methods
                 insertTable() {
                     const rows = parseInt(prompt('Number of rows:', '3')) || 3;
                     const cols = parseInt(prompt('Number of columns:', '3')) || 3;
 
                     const table = document.createElement('table');
+                    table.className = 'table-theme-default';
                     const thead = document.createElement('thead');
                     const tbody = document.createElement('tbody');
 
@@ -1540,6 +2427,13 @@
                     return node;
                 }
 
+                handleClick() {
+                    // Show/hide table controls based on cursor position
+                    const tableGroup = document.getElementById('tableGroup');
+                    const inTable = this.getCurrentTable() !== null;
+                    tableGroup.style.display = inTable ? 'flex' : 'none';
+                }
+
                 addRow() {
                     const currentRow = this.getCurrentRow();
                     if (!currentRow) return;
@@ -1586,6 +2480,157 @@
                     for (let i = 0; i < table.rows.length; i++) {
                         table.rows[i].deleteCell(index);
                     }
+                }
+
+                applyTableTheme(theme) {
+                    const table = this.getCurrentTable();
+                    if (!table) return;
+
+                    // Remove any existing theme classes
+                    table.classList.remove(
+                        'table-theme-default',
+                        'table-theme-professional',
+                        'table-theme-minimal',
+                        'table-theme-colorful',
+                        'table-theme-grid'
+                    );
+
+                    // Apply new theme
+                    table.classList.add(`table-theme-${theme}`);
+                }
+
+                addComment() {
+                    const selection = window.getSelection();
+                    if (selection.rangeCount === 0 || selection.toString().trim() === '') {
+                        alert('Please select some text to comment on');
+                        return;
+                    }
+
+                    const commentText = prompt('Enter your comment:');
+                    if (!commentText) return;
+
+                    const range = selection.getRangeAt(0);
+                    const span = document.createElement('span');
+                    span.className = 'commented-text';
+                    span.dataset.commentId = this.nextCommentId;
+
+                    const indicator = document.createElement('span');
+                    indicator.className = 'comment-indicator';
+                    span.appendChild(indicator);
+
+                    range.surroundContents(span);
+
+                    const comment = {
+                        id: this.nextCommentId,
+                        text: commentText,
+                        author: 'Current User',
+                        date: new Date().toISOString(),
+                        selection: span.textContent
+                    };
+
+                    this.comments.push(comment);
+                    this.nextCommentId++;
+
+                    this.updateCommentsList();
+                    this.toggleComments(true);
+                }
+
+                deleteComment(commentId) {
+                    // Remove the comment from the comments array
+                    this.comments = this.comments.filter(comment => comment.id !== commentId);
+
+                    // Remove the comment highlight from the text
+                    const commentedText = this.editor.querySelector(`[data-comment-id="${commentId}"]`);
+                    if (commentedText) {
+                        const textNode = document.createTextNode(commentedText.textContent);
+                        commentedText.parentNode.replaceChild(textNode, commentedText);
+                    }
+
+                    this.updateCommentsList();
+                }
+
+                checkForDeletedComments() {
+                    const currentCommentElements = this.editor.querySelectorAll('[data-comment-id]');
+                    const currentIds = new Set(Array.from(currentCommentElements).map(el => parseInt(el.dataset.commentId)));
+
+                    // Find comments that no longer have corresponding elements
+                    this.comments = this.comments.filter(comment => {
+                        if (!currentIds.has(comment.id)) {
+                            this.deletedCommentIds.add(comment.id);
+                            return false;
+                        }
+                        return true;
+                    });
+
+                    if (this.deletedCommentIds.size > 0) {
+                        this.updateCommentsList();
+                        this.deletedCommentIds.clear();
+                    }
+                }
+
+                toggleComments(show = null) {
+                    const panel = document.getElementById('commentsPanel');
+                    if (show === null) {
+                        panel.classList.toggle('visible');
+                    } else {
+                        panel.classList.toggle('visible', show);
+                    }
+
+                    const button = document.querySelector('button[title="Show Comments"]');
+                    button.classList.toggle('active', panel.classList.contains('visible'));
+                }
+
+                updateCommentsList() {
+                    const commentsList = document.getElementById('commentsList');
+                    commentsList.innerHTML = '';
+
+                    this.comments.forEach(comment => {
+                        const entry = document.createElement('div');
+                        entry.className = 'comment-entry';
+                        entry.innerHTML = `
+                            <div class="comment-text">${comment.text}</div>
+                            <div class="comment-meta">
+                                <div>On: "${comment.selection}"</div>
+                                <div>By: ${comment.author}</div>
+                                <div>Date: ${new Date(comment.date).toLocaleString()}</div>
+                                <button onclick="editor.deleteComment(${comment.id})" class="delete-comment">Delete</button>
+                            </div>
+                        `;
+
+                        entry.addEventListener('mouseenter', () => {
+                            const commentedText = this.editor.querySelector(`[data-comment-id="${comment.id}"]`);
+                            if (commentedText) {
+                                commentedText.classList.add('highlight');
+                            }
+                        });
+
+                        entry.addEventListener('mouseleave', () => {
+                            const commentedText = this.editor.querySelector(`[data-comment-id="${comment.id}"]`);
+                            if (commentedText) {
+                                commentedText.classList.remove('highlight');
+                            }
+                        });
+
+                        commentsList.appendChild(entry);
+                    });
+                }
+
+                toggleSpellCheck() {
+                    this.spellCheckEnabled = !this.spellCheckEnabled;
+                    this.editor.spellcheck = this.spellCheckEnabled;
+
+                    // Visual feedback
+                    const button = document.querySelector('button[title="Spell Check"]');
+                    button.classList.toggle('active', this.spellCheckEnabled);
+                }
+
+                toggleAutoCorrect() {
+                    this.autoCorrectEnabled = !this.autoCorrectEnabled;
+                    this.editor.setAttribute('autocorrect', this.autoCorrectEnabled ? 'on' : 'off');
+
+                    // Visual feedback
+                    const button = document.querySelector('button[title="Auto Correct"]');
+                    button.classList.toggle('active', this.autoCorrectEnabled);
                 }
             }
 
