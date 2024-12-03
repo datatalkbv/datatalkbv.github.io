@@ -1,6 +1,6 @@
 # End User License Agreement (EULA) for DataTalk
 
-**Last Updated: October 18, 2024**
+**Last Updated: October 25, 2024**
 
 ## 1. Introduction
 
@@ -17,6 +17,8 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 2.4 "Documentation" means the user manuals, handbooks, and guides relating to the Service provided by DataTalk to the Licensee either electronically or in hard copy form.
 
 2.5 "Intellectual Property Rights" means all patents, rights to inventions, utility models, copyright and related rights, trademarks, service marks, trade, business and domain names, rights in trade dress or get-up, rights in goodwill or to sue for passing off, unfair competition rights, rights in designs, rights in computer software, database rights, topography rights, moral rights, rights in confidential information (including know-how and trade secrets) and any other intellectual property rights, in each case whether registered or unregistered and including all applications for and renewals or extensions of such rights, and all similar or equivalent rights or forms of protection in any part of the world.
+
+2.6 "Paying Users" means users who have purchased a subscription or license to use the Services.
 
 
 ## 3. Grant of License
@@ -50,11 +52,32 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 5.2 Feedback: If you provide DataTalk with any feedback or suggestions regarding the Service, you hereby assign to DataTalk all rights in such feedback and agree that DataTalk shall have the right to use and fully exploit such feedback and related information in any manner it deems appropriate.
 
+5.2.3 Permitted Uses: DataTalk may use Feedback to:
+- a) Improve and enhance the Service
+- b) Develop new features and functionality
+- c) Modify existing features and services
+- d) Incorporate into DataTalk's products and services
+- e) Use for any other business purposes
+
+5.2.4 No Compensation: You acknowledge that you are not entitled to any compensation or reimbursement of any kind from DataTalk for the Feedback provided.
+
+5.2.5 No Obligation: DataTalk is under no obligation to:
+- a) Consider or implement any Feedback provided
+- b) Maintain any Feedback as confidential
+- c) Return or acknowledge receipt of any Feedback
+- d) Notify you of any actions taken based on Feedback
+
 ## 6. User-Generated Content
 
-6.1 Ownership: You retain your rights to any content you submit, post or display on or through the Service ("User Content").
+6.1 Ownership: You retain all rights, title, and interest in and to any content you submit, post or display on or through the Service ("User Content"). DataTalk claims no ownership rights over your User Content and will never use your User Content to train AI models.
 
-6.2 License Grant: By submitting, posting or displaying User Content on or through the Service, you grant DataTalk a worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute such User Content for the purpose of providing and improving the Service.
+6.2 Limited License Grant: By submitting, posting or displaying User Content on or through the Service, you grant DataTalk a limited, worldwide, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute such User Content solely for the purpose of:
+
+- a) Providing the Service to you
+- b) Technical troubleshooting and bug fixes related to your use of the Service
+- c) Collecting anonymous usage analytics as described in Section 9.4
+
+This license is strictly limited to operating, maintaining, and improving the Service for your direct benefit. Under no circumstances will your User Content be used to train AI models or improve the Service for other customers.
 
 6.3 Representations and Warranties: You represent and warrant that you have all rights, power, and authority necessary to grant the rights granted herein to any User Content that you submit.
 
@@ -62,12 +85,20 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 7.1 Privacy Policy: Our collection and use of personal information in connection with the Service is as provided in DataTalk's Privacy Policy, which is available on our website. You agree to our collection, use, and disclosure of information as described in our Privacy Policy at https://datatalk.be/privacy.
 
-7.2 Data Ownership: You shall own all right, title, and interest in and to all of your data and shall have sole responsibility for the legality, reliability, integrity, accuracy, and quality of your data.
+7.2 Data Ownership: You shall own all right, title, and interest in and to all of your data and shall have sole responsibility for the legality, reliability, integrity, accuracy, and quality of your data. DataTalk acts solely as a data processor and will never use your data for any purpose other than providing the Services to you. We explicitly commit to never using your data to train AI models, improve our services for other customers, or for any other purpose not directly related to providing you with the contracted Services.
 
 7.3 Security Measures: DataTalk shall implement and maintain appropriate technical and organizational measures to protect your data against accidental or unlawful destruction, loss, alteration, unauthorized disclosure or access, for more information, please refer to our Security Policy at https://datatalk.be/security.
 
 7.4 Data Backup: DataTalk shall perform regular backups of your data and store such backups in a secure off-site location. In the event of any loss or damage to your data, your sole and exclusive remedy shall be for DataTalk to use reasonable commercial endeavors to restore the lost or damaged data from the latest backup.
 
+7.5 Technical Data Collection: In addition to the data processing necessary to provide the Service, DataTalk may collect and process technical data related to your use of the Service, including:
+
+- Error logs and debugging information
+- System performance metrics
+- Anonymous usage statistics
+- Service interaction patterns
+
+Such technical data collection is used solely for the purpose of maintaining and improving the Service's technical operations and your user experience. All such collection and processing will be conducted in accordance with our Privacy Policy and this EULA.
 
 ## 8. Confidentiality
 
@@ -75,8 +106,10 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 8.2 Exclusions: Confidential Information shall not include information that (a) is or becomes publicly known through no act or omission of the receiving party; (b) was in the receiving party's lawful possession prior to the disclosure; (c) is lawfully disclosed to the receiving party by a third party without restriction on disclosure; or (d) is independently developed by the receiving party without use of or reference to the disclosing party's Confidential Information.
 
+8.3 AI Training Exclusion: For the avoidance of doubt, DataTalk shall not use any Confidential Information, including but not limited to User Content and customer data, for training AI models or improving the Service beyond providing it directly to the customer who provided such information.
 
-## 9. AI Output Disclaimer
+
+## 9. AI Output Disclaimer & AI Training and Data Usage
 
 9.1 Nature of AI-Generated Content: You acknowledge and agree that the Service utilizes artificial intelligence technologies to generate content, including but not limited to legal research results, document drafts, and contract reviews ("AI-Generated Content").
 
@@ -88,7 +121,25 @@ This End User License Agreement ("EULA") is a legally binding contract between y
 
 9.5 No Attorney-Client Relationship: The use of the Service and any AI-Generated Content does not create an attorney-client relationship between you and DataTalk. You acknowledge that DataTalk is not providing legal advice through the Service or AI-Generated Content.
 
-## 10.  Fees and Payment
+9.6 No Training with Customer Data: DataTalk explicitly commits that it does not use any customer-provided data, documents, or content to train its AI models. Your data remains yours and will never be used to improve or train our AI systems.
+
+9.7 Data Segregation: All customer data is strictly segregated and is only used to provide the Service directly to you. Your data will not be shared, analyzed, or processed for any purpose other than providing you with the contracted Services.
+
+9.8 Model Training: DataTalk's AI models are trained exclusively on publicly available data and proprietary datasets that DataTalk has the right to use. Customer data is explicitly excluded from any training processes.
+
+9.9 Technical Operations and Bug Fixes: DataTalk may process error logs and system data related to the processing of your content solely for the purpose of:
+    a) Identifying and resolving technical issues
+    b) Fixing bugs in the Service
+    c) Improving the accuracy and reliability of the Service's processing of your specific data
+    d) Ensuring proper system performance and security
+
+9.10 Usage Analytics: DataTalk may collect and analyze anonymous usage statistics and metadata about how you interact with the Service, including:
+    a) Feature usage patterns
+    b) Performance metrics
+    c) User interface interactions
+    d) Error rates and system health metrics
+
+## 10. Fees and Payment
 
 10.1 Fees: You agree to pay all fees specified in the order form or other payment agreement between you and DataTalk. Except as otherwise specified herein or in the order form, (i) fees are based on Services purchased and not actual usage, (ii) payment obligations are non-cancelable and fees paid are non-refundable, and (iii) quantities purchased cannot be decreased during the relevant subscription term.
 
@@ -197,7 +248,41 @@ Except as provided herein, the failure to exercise a right or to require perform
 25.2 To Us: To give us notice under this EULA, you must contact DataTalk by email at mail@datatalk.be. DataTalk may update the email address for notices by posting a notice on our website. Notices to DataTalk will be effective one business day after they are sent.
 
 
-## 26. Contact Information
+## 26. Support Services
+
+### Support Channels
+The DataTalk shall provide the following support channels to Paying Users:
+   a) Email support: support@datatalk.be
+
+### Support Hours
+Standard support hours are Monday to Friday, 9:00 AM to 5:00 PM Central European Time (CET), excluding Belgian public holidays.
+
+### Emergency Support
+Within 48h response for emergency support is available for Severity 1 issues (as defined in Section 4.1).
+
+### Issue Severity Levels and Response Times
+   
+#### Severity Levels
+   Issues shall be categorized into the following severity levels:
+   a) Severity 1 (Critical): The Services are completely unavailable or unusable, causing critical impact to the Paying User's business operations.
+   b) Severity 2 (High): Major functionality of the Services is impaired, causing significant impact to the Paying User's business operations, but a workaround is available.
+   c) Severity 3 (Medium): Minor functionality of the Services is impaired, causing moderate impact to the Paying User's business operations.
+   d) Severity 4 (Low): General questions, feature requests, or minor bugs that do not impact the Paying User's business operations.
+
+#### Response and Resolution Times
+The DataTalk shall use commercially reasonable efforts to respond to and resolve issues according to the timelines specified in Section 2.2 of the Support and Maintenance Terms.
+
+### Maintenance, Updates, and Upgrades
+The DataTalk's maintenance, update, and upgrade procedures shall be as specified in Sections 3 and 4 of the Support and Maintenance Terms.
+
+### Customer Responsibilities
+Paying Users' responsibilities shall be as specified in Section 5 of the Support and Maintenance Terms.
+
+
+### Service Level Agreement (SLA) Credits
+If the DataTalk fails to meet the response and resolution times for Severity 1 and Severity 2 issues, Paying Users shall be entitled to service credits as outlined in Schedule A of the main agreement.
+
+## 27. Contact Us
 
 If you have any questions about this EULA, please contact us at:
 

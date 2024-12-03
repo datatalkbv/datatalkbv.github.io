@@ -1,4 +1,4 @@
-# Pricing & Product
+# DataTalk AI Assistant
 
 ## Licensing Plans
 
@@ -6,7 +6,7 @@ Our pricing structure is tiered based on the number of users, down below are the
 
 - **Up to 10 users**: €299/month
 - **10-25 users**: €249/month
-- **25+ users**: €229/month
+- **25+ users**: Please contact us for a custom quote at [mail@datatalk.be](mailto:mail@datatalk.be)
 
 We offer additional discounts for customers who commit to yearly multi-year contracts, as well as those who choose to make upfront payments on a quarterly, bi-annual, or annual basis rather than monthly.
 
@@ -14,7 +14,7 @@ Should you opt to implement our tooling across your entire organization, we are 
 
 ## Product Overview
 
-Our Legal AI Assistant is designed to improve document drafting, editing and knowledge management while maintaining the highest standards of data security and confidentiality.
+Our AI Assistant is designed to improve document drafting, editing and knowledge management while maintaining the highest standards of data security and confidentiality.
 All functionality will be available through Microsoft Word integration.
 
 1. **AI-Assisted Drafting**: Draft and redline legal documents efficiently using the AI models. This feature leverages trusted sources from within your firm, ensuring accuracy and maintaining traceability
