@@ -19,6 +19,36 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .icon-gradient-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+        }
+        .icon-gradient-secondary {
+            background: linear-gradient(135deg, #6B46C1, #2563EB);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+        }
+        .icon-gradient-tertiary {
+            background: linear-gradient(135deg, #3B82F6, #10B981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+        }
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -61,30 +91,30 @@
 
         <!-- Feature Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
                 <div class="flex items-center space-x-4 mb-4">
-                    <div class="p-2 bg-gray-100 rounded-lg">
-                        <i class="fas fa-search w-6 h-6 text-gray-700"></i>
+                    <div class="icon-box bg-gradient-to-br from-purple-50 to-blue-50">
+                        <i class="fas fa-search icon-gradient-primary"></i>
                     </div>
                     <h3 class="font-semibold text-lg">Comprehensive Search</h3>
                 </div>
                 <p class="text-gray-600 text-sm">Search and analyze over 117 million patent documents and 2 million academic papers for complete coverage</p>
             </div>
 
-            <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
                 <div class="flex items-center space-x-4 mb-4">
-                    <div class="p-2 bg-blue-50 rounded-lg">
-                        <i class="fas fa-brain w-6 h-6 text-gray-700"></i>
+                    <div class="icon-box bg-gradient-to-br from-indigo-50 to-purple-50">
+                        <i class="fas fa-brain icon-gradient-secondary"></i>
                     </div>
                     <h3 class="font-semibold text-lg">AI-Powered Analysis</h3>
                 </div>
                 <p class="text-gray-600 text-sm">End-to-end novelty and inventiveness analysis powered by state-of-the-art generative AI</p>
             </div>
 
-            <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300">
                 <div class="flex items-center space-x-4 mb-4">
-                    <div class="p-2 bg-blue-50 rounded-lg">
-                        <i class="fas fa-chart-bar w-6 h-6 text-gray-700"></i>
+                    <div class="icon-box bg-gradient-to-br from-blue-50 to-green-50">
+                        <i class="fas fa-chart-bar icon-gradient-tertiary"></i>
                     </div>
                     <h3 class="font-semibold text-lg">Visual Insights</h3>
                 </div>
