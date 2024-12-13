@@ -1,5 +1,7 @@
 # Algemene Voorwaarden DataTalk bv
 
+Laast gewijzigd op 02-12-2024
+
 De algemene voorwaarden maken integraal deel uit van de overeenkomst, met uitsluiting van de eigen voorwaarden van de klant. Er kan alleen schriftelijk van worden afgeweken. De klant erkent uitdrukkelijk deze voorwaarden gelezen te hebben en ze integraal zonder voorbehoud goed te keuren.
 
 ## Bestellingen en Overeenkomsten
@@ -18,7 +20,7 @@ De klant dient de geleverde diensten onmiddellijk na te zien. Eventuele gebreken
 Met uitzondering van hetgeen beschreven in artikel 4, is DataTalk bv niet gehouden tot welke schadevergoeding dan ook, die rechtstreeks of onrechtstreeks het gevolg zou zijn van geleverde diensten, behalve in geval van zware fout of opzet. De aansprakelijkheid is alleszins beperkt tot de factuurwaarde van de geleverde diensten. DataTalk bv kan niet aansprakelijk worden gesteld voor onrechtstreekse schade zoals verlies van inkomsten, verlies van contracten, kapitaalkosten, beperking van rendement of andere verliezen of gevolgschade. DataTalk bv draagt geen verantwoordelijkheid voor fouten van aangestelden, zelfs niet in geval van opzet of zware fout.
 
 ## Betalingsvoorwaarden
-Tenzij schriftelijk anders overeengekomen, zijn facturen betaalbaar binnen 30 kalenderdagen na factuurdatum. Bij wanbetaling wordt het openstaande bedrag van rechtswege en zonder ingebrekestelling verhoogd met een jaarlijkse interest van 12% en een forfaitaire vergoeding van 10%, met een minimum van 150 EUR. Elke wanbetaling maakt alle openstaande facturen onmiddellijk opeisbaar en geeft DataTalk bv het recht om, na ingebrekestelling, toekomstige dienstverlening op te schorten of de overeenkomst te ontbinden.
+Tenzij schriftelijk anders overeengekomen, zijn facturen betaalbaar binnen 14 kalenderdagen na factuurdatum, tenzij schriftelijk anders overeengekomen. Bij wanbetaling wordt het openstaande bedrag van rechtswege en zonder ingebrekestelling verhoogd met een jaarlijkse interest van 12% en een forfaitaire vergoeding van 10%, met een minimum van 150 EUR. Elke wanbetaling maakt alle openstaande facturen onmiddellijk opeisbaar en geeft DataTalk bv het recht om, na ingebrekestelling, toekomstige dienstverlening op te schorten of de overeenkomst te ontbinden.
 
 ## Contractbreuk
 Wanneer de klant zijn contractuele verplichtingen niet nakomt, heeft DataTalk bv het recht om, na ingebrekestelling, haar verplichtingen op te schorten of de overeenkomst zonder rechterlijke tussenkomst te ontbinden, indien op de ingebrekestelling geen of geen nuttig gevolg wordt gegeven binnen acht werkdagen, onverminderd het recht op schadevergoeding.
