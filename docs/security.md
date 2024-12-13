@@ -5,7 +5,7 @@
 
 ## 1. Introduction
 
-At DataTalk, headquartered in Belgium, we understand the critical importance of data security, privacy, and European data residency in the legal industry. Our AI-powered legal research, drafting, and review platform is designed with robust security measures to protect your sensitive information and ensure compliance with relevant European standards. This policy outlines our commitment to maintaining the highest levels of security and data protection within the European context.
+At DataTalk, headquartered in Belgium, we understand the critical importance of data security, privacy, and European data residency in the legal industry. Our AI-powered platform is designed with robust security measures to protect your sensitive information and ensure compliance with relevant European standards. This policy outlines our commitment to maintaining the highest levels of security and data protection within the European context.
 
 ## 2. Infrastructure and Hosting
 
