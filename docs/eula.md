@@ -1,14 +1,14 @@
 # End User License Agreement (EULA) for DataTalk
 
-**Last Updated: October 25, 2024**
+**Last Updated: December 13, 2024**
 
 ## 1. Introduction
 
-This End User License Agreement ("EULA") is a legally binding contract between you, either an individual or a single entity ("Licensee", "you", or "your"), and DataTalk BV, a company registered in Belgium with its principal place of business at Weertersteenweg 5A 3640 Kinrooi ("DataTalk", "we", "us", or "our") for the use of our AI-powered legal research, drafting, and review platform ("Service"). By accessing, installing, or using our Service, you acknowledge that you have read, understood, and agree to be bound by the terms and conditions of this EULA.
+This End User License Agreement ("EULA") is a legally binding contract between you, either an individual or a single entity ("Licensee", "you", or "your"), and DataTalk BV, a company registered in Belgium with its principal place of business at Weertersteenweg 5A 3640 Kinrooi ("DataTalk", "we", "us", or "our") for the use of our AI-powered platform ("Service"). By accessing, installing, or using our Service, you acknowledge that you have read, understood, and agree to be bound by the terms and conditions of this EULA.
 
 ## 2. Definitions
 
-2.1 "Service" refers to DataTalk's AI-powered platform for legal research, drafting, and review, including all associated software, updates, documentation, and content.
+2.1 "Service" refers to DataTalk's AI-powered platform, including all associated software, updates, documentation, and content.
 
 2.2 "User" means any individual who accesses or uses the Service under your account.
 
@@ -111,7 +111,7 @@ Such technical data collection is used solely for the purpose of maintaining and
 
 ## 9. AI Output Disclaimer & AI Training and Data Usage
 
-9.1 Nature of AI-Generated Content: You acknowledge and agree that the Service utilizes artificial intelligence technologies to generate content, including but not limited to legal research results, document drafts, and contract reviews ("AI-Generated Content").
+9.1 Nature of AI-Generated Content: You acknowledge and agree that the Service utilizes artificial intelligence technologies to generate content, including but not limited to search results, research output, document drafts, reporting and contract reviews ("AI-Generated Content").
 
 9.2 No Substitute for Professional Judgment: AI-Generated Content is provided for informational purposes only and should not be considered as a substitute for professional legal advice, judgment, or expertise. You agree that all AI-Generated Content must be reviewed and verified by qualified legal professionals before being relied upon or used in any legal context.
 

@@ -23,7 +23,7 @@ Email: mail@datatalk.be
 ## Sharing of Information
 
 - We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this Privacy Policy.
-- We may share your information with trusted third-party service providers who assist us in operating our website and providing our services, such as Cloudflare (DNS/cache), Google Analytics (website analytics), GitHub Pages (web page hosting), AWS (product service hosting), and Anthropic and OpenAI (AI services). These third parties are obligated to maintain the confidentiality and security of your information.
+- We may share your information with trusted third-party service providers who assist us in operating our website and providing our services.
 - We may also disclose your information if required by law, court order, or other legal processes, or to protect our rights, property, or safety, or that of our users or the public.
 
 ## Data Retention
