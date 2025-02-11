@@ -1,6 +1,6 @@
 # Algemene Voorwaarden DataTalk bv
 
-Laast gewijzigd op 02-12-2024
+Laast gewijzigd op 11-02-2025
 
 De algemene voorwaarden maken integraal deel uit van de overeenkomst, met uitsluiting van de eigen voorwaarden van de klant. Er kan alleen schriftelijk van worden afgeweken. De klant erkent uitdrukkelijk deze voorwaarden gelezen te hebben en ze integraal zonder voorbehoud goed te keuren.
 
@@ -15,6 +15,9 @@ De klant dient te zorgen dat de diensten door DataTalk bv op een normale manier 
 
 ## Acceptatie en Klachten
 De klant dient de geleverde diensten onmiddellijk na te zien. Eventuele gebreken moeten zo snel mogelijk en ten laatste 7 kalenderdagen na de levering per aangetekend schrijven aan DataTalk bv worden gemeld. Na die termijn staat DataTalk bv enkel nog in voor verborgen gebreken die de dienst ongeschikt maken voor het beoogde gebruik, voor zover DataTalk bv deze gebreken kende of behoorde te kennen. De klant verwittigt DataTalk bv uiterlijk binnen 5 kalenderdagen na het ontdekken van het verborgen gebrek door middel van een aangetekend schrijven. Klachten wegens verborgen gebreken schorten de betalingsverplichting niet op.
+
+## Opzegging van dienstverlening
+DataTalk bv behoudt zich het recht voor om de dienstverlening te beëindigen met onmiddellijke ingang, zonder opgave van redenen. In dit geval zal DataTalk bv naar eigen redelijk inzicht een billijke vergoeding vaststellen voor de niet-geleverde diensten of ongebruikte rechten, rekening houdend met reeds gemaakte kosten, investeringen en geleverde diensten. Deze vergoeding zal in geen geval meer bedragen dan een redelijk berekend deel van de vooruitbetaalde vergoeding voor het niet-geleverde deel van de diensten. De terugbetaling zal gebeuren binnen 60 kalenderdagen na de beëindigingsdatum. Eventuele kosten verbonden aan de beëindiging, waaronder maar niet beperkt tot opslag-, migratie- en transitiekosten, zijn ten laste van de klant.
 
 ## Aansprakelijkheid
 Met uitzondering van hetgeen beschreven in artikel 4, is DataTalk bv niet gehouden tot welke schadevergoeding dan ook, die rechtstreeks of onrechtstreeks het gevolg zou zijn van geleverde diensten, behalve in geval van zware fout of opzet. De aansprakelijkheid is alleszins beperkt tot de factuurwaarde van de geleverde diensten. DataTalk bv kan niet aansprakelijk worden gesteld voor onrechtstreekse schade zoals verlies van inkomsten, verlies van contracten, kapitaalkosten, beperking van rendement of andere verliezen of gevolgschade. DataTalk bv draagt geen verantwoordelijkheid voor fouten van aangestelden, zelfs niet in geval van opzet of zware fout.
