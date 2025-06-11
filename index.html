@@ -14,7 +14,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataTalk | AI Assistant for Legal</title>
+    <title>DataTalk | Pioneering AI Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -253,22 +253,70 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .products {
+            padding: 4rem 0;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .product-card .product-logo-container {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-card h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-card p {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card .cta-button {
+            margin-top: auto;
+        }
+
+        .patgrid-logo {
+            font-family: 'Funnel Display', serif;
+            /* Serif is a fallback font */
+            font-weight: 500;
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .product-logo-text {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: #1a1a1a;
+        }
     </style>
 </head>
 
 <body>
-    <div id="waitlist-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>We're thrilled by the overwhelming interest in DataTalk! Due to high demand, we're currently
-                operating with a waiting list.</p>
-            <p>Join our waiting list to secure your spot and be among the first to experience our
-                cutting-edge AI
-                solutions for legal practices.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScBzBZrR5V6svQwuIRwJ9jZwved-P1VCRbcP1FJKZ2a584W9Q/viewform"
-                class="cta-button" target="_blank">Join Waiting List</a>
-        </div>
-    </div>
     <div id="particles-js"></div>
 
     <div class="container">
@@ -277,55 +325,120 @@
                 <a href="/">DataTalk</a>
             </div>
             <nav>
-                <a class="ms-3 text-dark text-decoration-none" href="/company.html">Company</a>
+                <a class="ms-3 text-dark text-decoration-none" href="#about">Company</a>
                 <a class="ms-3 text-dark text-decoration-none" href="#contact">Contact</a>
             </nav>
         </header>
 
         <div class="content">
             <section class="hero">
-                <h1>Transform Your Legal Practice with DataTalk</h1>
-                <p>Revolutionize your legal practice with cutting-edge AI technology. DataTalk offers intelligent
-                    solutions for legal research and document drafting.</p>
-                <a href="#" id="waitlist-button" class="cta-button">Request a Demo</a>
-
-
+                <h1>Pioneering AI-Powered Solutions</h1>
+                <p>DataTalk is a technology venture building specialized AI products for various industries. We are the
+                    creators of CalCount, RedactWise, and PatGrid.</p>
             </section>
 
-            <section class="solutions">
+            <section class="products section bg-light">
                 <div class="container">
+                    <h2 class="text-center mb-5">Our Products</h2>
                     <div class="row">
-                        <div class="col-md-4 solution-item text-center">
-                            <h3>Research</h3>
-                            <p>Use our AI to search internal databases of contracts, legislation, and case law for
-                                informed decision-making.</p>
+                        <div class="col-md-4 d-flex align-items-stretch">
+                            <div class="product-card">
+                                <div class="product-logo-container">
+                                    <a href="https://www.calcount.be" target="_blank"
+                                        class="product-logo-text">CalCount</a>
+                                </div>
+                                <h3>AI Nutrition Tracking for Healthcare</h3>
+                                <p>Reduce Patient Monitoring Time by 70% & Empower Patients. Transform patient
+                                    nutrition monitoring with AI-powered accuracy via photo or text logs.</p>
+                                <a href="https://www.calcount.be" target="_blank" class="cta-button">Visit
+                                    CalCount</a>
+                            </div>
                         </div>
-                        <div class="col-md-4 solution-item text-center">
-                            <h3>Draft</h3>
-                            <p>Create documents efficiently with AI-assisted clause extraction, indexing, and a
-                                comprehensive database.</p>
+                        <div class="col-md-4 d-flex align-items-stretch">
+                            <div class="product-card">
+                                <div class="product-logo-container">
+                                    <a href="https://www.redactwise.com" target="_blank"
+                                        class="product-logo-text">RedactWise</a>
+                                </div>
+                                <h3>Advanced AI Redaction for Legal Documents</h3>
+                                <p>Precise AI-powered redaction for PDF and Word documents. Our specialized tools excel
+                                    at handling sensitive information and signature removal, preserving document
+                                    integrity.</p>
+                                <a href="https://www.redactwise.com" target="_blank" class="cta-button">Visit
+                                    RedactWise</a>
+                            </div>
                         </div>
-                        <div class="col-md-4 solution-item text-center">
-                            <h3>Review</h3>
-                            <p>Create playbooks for consistent, thorough contract reviews and negotiations.</p>
+                        <div class="col-md-4 d-flex align-items-stretch">
+                            <div class="product-card">
+                                <div class="product-logo-container">
+                                    <a href="https://www.patgrid.com" target="_blank" class="patgrid-logo">
+                                        <span style="color: #1a1a1a;">pat</span><span
+                                            style="color: #2B5BE2;">grid</span>
+                                    </a>
+                                </div>
+                                <h3>Let AI agents shed new light on patents</h3>
+                                <p>Find relevant patents faster and get expert-level analysis for patentability,
+                                    invalidation, and FTO, powered by the latest AI technology.</p>
+                                <a href="https://www.patgrid.com" target="_blank" class="cta-button">Visit PatGrid</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mt-4">
-                        <div class="col-md-4 solution-item text-center">
-                            <h3>Anonymize</h3>
-                            <p>Quickly anonymize documents such as Word or PDF files to protect sensitive information
-                                and ensure compliance.</p>
+                </div>
+            </section>
+
+            <section id="about" class="section">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2>The DataTalk Story</h2>
+                        <p>DataTalk was founded by Thomas van Turnhout and Koen van Eijk, two lifelong friends with a
+                            shared
+                            passion for innovation. After successful corporate careers and the establishment of their
+                            first
+                            venture, Oakwood Technologies, they embarked on a new journey to transform the technology
+                            landscape with specialized AI solutions.</p>
+                        <p>With their groundbreaking Smart Robotic Process Automation software suite, Automagica, and
+                            other
+                            solutions, Thomas and Koen served high-profile companies across various industries. Their
+                            success led to the acquisition of Oakwood Technologies by Netcall plc, where they continued
+                            to
+                            drive innovation for another three years.</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="./media/founders_0.jpg"
+                            alt="Thomas van Turnhout and Koen van Eijk, founders of DataTalk"
+                            class="img-fluid rounded founders-image">
+                    </div>
+                </div>
+            </section>
+
+            <section id="values" class="section bg-light">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 text-center">
+                            <h2>Our Values and Culture</h2>
+                            <p>At DataTalk, we are committed to innovation, excellence, and ethical AI use. We believe
+                                in sharing our journey and insights, fostering a culture of collaboration and
+                                knowledge-sharing. Our team is driven by a passion for transformation and a dedication
+                                to delivering cutting-edge solutions that make a real difference in people's lives.</p>
                         </div>
-                        <div class="col-md-4 solution-item text-center">
-                            <h3>Onboarding</h3>
-                            <p>Optimize client intake with our solution for efficient information gathering and
-                                relationship building.</p>
-                        </div>
-                        <div class="col-md-4 solution-item text-center">
-                            <h3>Chat</h3>
-                            <p>Use our generative AI models to answer questions on legal cases or documents, enhancing
-                                your research capabilities.</p>
-                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clients" class="section">
+                <div class="container">
+                    <h2 class="text-center">A History of Trust with Industry Leaders</h2>
+                    <p class="text-center">Our founders bring a wealth of experience and a proven track record of
+                        success. In their previous venture, they had the privilege of serving renowned global brands and
+                        esteemed customers across various industries.</p>
+                    <div class="client-logos mt-4">
+                        <img src="/media/adidas.svg" alt="Adidas logo" class="img-fluid">
+                        <img src="/media/kpmg.svg" alt="KPMG logo" class="img-fluid">
+                        <img src="/media/livenation.svg" alt="LiveNation logo" class="img-fluid">
+                        <img src="/media/az_maria_middelares.svg" alt="Maria Middelares hospital logo"
+                            class="img-fluid">
+                        <img src="/media/vrt.svg" alt="VRT" class="img-fluid">
+                        <img src="/media/google.svg" alt="Google" class="img-fluid">
                     </div>
                 </div>
             </section>
@@ -375,25 +488,6 @@
             },
             retina_detect: true
         });
-    </script>
-    <script>
-        var modal = document.getElementById("waitlist-modal");
-        var btn = document.getElementById("waitlist-button");
-        var span = document.getElementsByClassName("close")[0];
-
-        btn.onclick = function () {
-            modal.style.display = "block";
-        }
-
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
     </script>
 </body>
 
