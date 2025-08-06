@@ -50,4 +50,4 @@ If you have any questions, concerns, or requests regarding this Privacy Policy o
 
 DataTalk BV
 Weertersteenweg 5A, 3640 Ophoven Kinrooi, Belgium
-Email: mail@magifind.com
+Email: mail@datatalk.be
